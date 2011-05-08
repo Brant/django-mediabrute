@@ -1,0 +1,31 @@
+Config
+CSS_DIR : Main CSS directory inside MEDIA_ROOT, "css/"
+JS_DIR : Main JS directory inside MEDIA_ROOT, "js/"
+
+Additional Config:
+	APP_CSS : where app-specific CSS will sit in app directory
+		e.g. : "media/css", 
+		defaults to "css"
+
+	APP_JS : where app-specific JS will sit in app directory
+		e.g. : "media/js", 
+		defaults to "css"
+
+	CSS_TOP_FILES : the list of files that should go at the top of the final CSS file
+		i.e. : things that should be overrideable
+		e.g. css resets, other standard sheets
+	
+	CSS_BOTTOM_FILES : the list of filenames that should go at the bottom of the final CSS file
+		i.e. : things that should have "the final say"
+		e.g. files with lots of media queries for responsive design
+
+Available:
+Context Processors:
+	mediabrute.context_processors.mini_media
+	mediabrute.context_processors.mini_js
+	mediabrute.context_processors.mini_css
+Management commands:
+	manage.py mediabrute_clearcache
+
+API
+	
