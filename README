@@ -5,6 +5,11 @@ It will crawl through a "main" js and css directory (2 different directories) wh
 
 collect -> compile -> minify -> write to cache
 
+In your templates, then, you can access the cache'd files using the context processors.
+<link rel="stylesheet" type="text/css" href="{{ MINI_CSS }}" />
+<script src="{{ MINI_JS }}"></script>
+
+
 It does timestamp checking, so it only updates the cache'd file when it finds a css or js file that has been modified since the cache'd file was created. (It does this for CSS and JS separately).
 
 It is great for projects where only 1 js and/or css file needs to be cached for the entire site/project.
