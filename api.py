@@ -6,8 +6,6 @@ from mediabrute.util import dirs, api_helpers
 from mediabrute.context_processors import heavy_lifting
 
 
-def shutup(asdf):
-    return "yo"
 
 def clear_cache():
     """
