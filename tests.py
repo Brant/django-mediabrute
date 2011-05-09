@@ -7,11 +7,104 @@ Replace this with more appropriate tests for your application.
 
 from django.test import TestCase
 from django.conf import settings
+
 from mediabrute.util import dirs, api_helpers, defaults
 from mediabrute import api
 from mediabrute.util import list_css_top_files, list_css_bottom_files
+from mediabrute.context_processors import heavy_lifting
+
 import os
 import inspect
+
+class CssOrderingTestCase(TestCase):
+    """
+    Tests relating to the proper ordering of CSS sheets
+    """
+    def setUp(self):
+        """
+        Setup for css ordering tests
+        """
+        self.fakeFileList = [
+                             "/asdfs/gggg/yoyo/mobile.css",
+                             "/asdf/gggg/yoyo2/mobile.css",
+                             "/yayay/asdf/not/style.css",
+                             "/hoooboy/yup.css",
+                             "/ohyayay/reset.css",
+                             ]
+        
+    def testCssTopFilesBelong(self):
+        """
+        Make sure that all top files returned by the organize_css_files belong there
+        """
+        top, std, bottom = heavy_lifting.organize_css_files(self.fakeFileList)
+        for fle in top:
+            self.assertIn(os.path.basename(fle), list_css_top_files())
+            
+    def testCssBottomFilesBelong(self):
+        """
+        Make sure that all bottom files returned by the organize_css_files belong there
+        """
+        top, std, bottom = heavy_lifting.organize_css_files(self.fakeFileList)
+        for fle in bottom:
+            self.assertIn(os.path.basename(fle), list_css_bottom_files())
+            
+    def testCssBottomFilesOrdered(self):
+        """
+        Make sure that the
+        
+        This is only important if there are multiple
+        settings.CSS_BOTTOM_FILES and matches found 
+        
+        TODO:Finish this test
+        """
+        
+        top, std, bottom = heavy_lifting.organize_css_files(self.fakeFileList)
+         
+        if len(bottom) > 1 and len(list_css_bottom_files()) > 1:
+            for found_file in bottom:
+                found_file_name = os.path.basename(found_file)
+                
+                        
+                for f_file_again in bottom:
+                    f_file_again_name = os.path.basename(f_file_again)
+                            
+                    if not found_file_name == f_file_again_name:
+                        if bottom.index(found_file) > bottom.index(f_file_again):
+                            self.assertGreater(list_css_bottom_files().index(found_file_name), list_css_bottom_files().index(f_file_again_name))
+
+                        if bottom.index(found_file) < bottom.index(f_file_again):
+                            self.assertLess(list_css_bottom_files().index(found_file_name), list_css_bottom_files().index(f_file_again_name))
+                
+                
+    def testCssTopFilesOrdered(self):
+        """
+        Make sure that the
+        
+        This is only important if there are multiple
+        settings.CSS_TOP_FILES and matches found
+        
+        TODO:Finish this test 
+        """
+        
+        top, std, bottom = heavy_lifting.organize_css_files(self.fakeFileList)
+        
+        if len(top) > 1 and len(list_css_top_files()) > 1:
+            for found_file in top:
+                found_file_name = os.path.basename(found_file)
+                
+                        
+                for f_file_again in top:
+                    f_file_again_name = os.path.basename(f_file_again)
+                            
+                    if not found_file_name == f_file_again_name:
+                        if top.index(found_file) > top.index(f_file_again):
+                            self.assertGreater(list_css_top_files().index(found_file_name), list_css_top_files().index(f_file_again_name))
+
+                        if top.index(found_file) < top.index(f_file_again):
+                            self.assertLess(list_css_top_files().index(found_file_name), list_css_top_files().index(f_file_again_name))
+                        
+                                    
+        
 
 class PublicApiTestCase(TestCase):
     """
