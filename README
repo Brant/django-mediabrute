@@ -12,9 +12,11 @@ It is great for projects where only 1 js and/or css file needs to be cached for 
 important Configurations
 At the very least, these two settings should be added to your django settings file.
 CSS_DIR
+	e.g. CSS_DIR = "css"
 	- Main CSS directory inside MEDIA_ROOT, 
 	- Defaults to "css"
 JS_DIR 
+	e.g. JS_DIR = "js"
 	-  Main JS directory inside MEDIA_ROOT
 	- Defaults to "js"
 
