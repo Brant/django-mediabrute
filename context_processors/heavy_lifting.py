@@ -76,9 +76,7 @@ def organize_css_files(file_list):
     bot_list = []
     
     top_watch = list_css_top_files()
-    bot_watch = list_css_bottom_files()    
-    
-    
+    bot_watch = list_css_bottom_files()  
     
     for watch in top_watch:
         for file_fullpath in file_list:
@@ -86,21 +84,17 @@ def organize_css_files(file_list):
             if file_name == watch:
                 top_list.append(file_fullpath)
                 
-    for item in top_list:
-        file_list.remove(item)
-    
     for watch in bot_watch:
         for file_fullpath in file_list:
             file_name = os.path.basename(file_fullpath)
             if file_name == watch:
                 bot_list.append(file_fullpath)
-    
-    for item in bot_list:
-        file_list.remove(item)            
+            
         
     for file_fullpath in file_list:
-        file_name = os.path.basename(file_fullpath)
-        std_list.append(file_fullpath)
+        if not file_fullpath in top_list and not file_fullpath in bot_list:
+            file_name = os.path.basename(file_fullpath)
+            std_list.append(file_fullpath)
         
 
     return (top_list, std_list, bot_list)
