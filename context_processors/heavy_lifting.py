@@ -11,7 +11,6 @@ import glob
 
 from mediabrute.util import list_css_top_files, list_css_bottom_files
 
-
 def unlink_cache(cache_dir, ext):
     """
     Delete cache files of extension ext from cache_dir
