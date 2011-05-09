@@ -1,6 +1,12 @@
 Introduction
 Media Brute's purpose is to automatically collect, compile, minify, and cache all JS and CSS for a Django project. It then has context processors that allow that minified JS and CSS to be referenced in the templates.
 
+It will crawl through a "main" js and css directory (2 different directories) which sits in the settings.MEDIA_ROOT. It will then crawl through all settings.INSTALLED_APPS looking for CSS and JS as well. Once it finds everything, it will compile everything that it has found, minify it, and cache it.
+
+collect -> compile -> minify -> write to cache
+
+It does timestamp checking, so it only updates the cache'd file when it finds a css or js file that has been modified since the cache'd file was created. (It does this for CSS and JS separately).
+
 It is great for projects where only 1 js and/or css file needs to be cached for the entire site/project.
 
 important Configurations
