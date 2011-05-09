@@ -1,8 +1,17 @@
-Config
-CSS_DIR : Main CSS directory inside MEDIA_ROOT, "css/"
-JS_DIR : Main JS directory inside MEDIA_ROOT, "js/"
+Introduction
+Media Brute's purpose is to automatically collect, compile, minify, and cache all JS and CSS for a Django project. It then has context processors that allow that minified JS and CSS to be referenced in the templates.
 
-Additional Config:
+important Configurations
+At the very least, these two settings should be added to your django settings file.
+CSS_DIR
+	- Main CSS directory inside MEDIA_ROOT, 
+	- Defaults to "css"
+JS_DIR 
+	-  Main JS directory inside MEDIA_ROOT
+	- Defaults to "js"
+
+
+Additional Configurations
 	APP_CSS : where app-specific CSS will sit in app directory
 		e.g. : "media/css", 
 		defaults to "css"
@@ -28,4 +37,13 @@ Management commands:
 	manage.py mediabrute_clearcache
 
 API
+from mediabrute import api
+
+api.clear_cache() : clears cached js and css files
+api.get_app_css_dirs() : get a list of css directories found inside apps (not inside the main css directory)
+api.get_app_js_dirs() : get a list of js directories found inside apps (not inside the main js directory)
+api.get_main_js_dir() : get the main js directory that mediabrute will pull from (this is the one inside MEDIA_ROOT)
+api.get_main_css_dir() : get the main css directory that mediabrute will pull from (this is the one inside MEDIA_ROOT)
+
+
 	
