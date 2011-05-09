@@ -61,7 +61,7 @@ def generate_cache_name(ext, timestamp):
     return "%s-%s_.%s" % (ext, timestamp, ext)
 
 
-def organize_css_files(file_list, main_dir):
+def organize_css_files(file_list):
     """
     Organize the mass of CSS files into top, middle, bottom
     
@@ -79,19 +79,24 @@ def organize_css_files(file_list, main_dir):
     bot_watch = list_css_bottom_files()    
     
     
+    
     for watch in top_watch:
         for file_fullpath in file_list:
             file_name = os.path.basename(file_fullpath)
             if file_name == watch:
                 top_list.append(file_fullpath)
-                file_list.remove(file_fullpath)
                 
+    for item in top_list:
+        file_list.remove(item)
+    
     for watch in bot_watch:
         for file_fullpath in file_list:
             file_name = os.path.basename(file_fullpath)
             if file_name == watch:
                 bot_list.append(file_fullpath)
-                file_list.remove(file_fullpath)
+    
+    for item in bot_list:
+        file_list.remove(item)            
         
     for file_fullpath in file_list:
         file_name = os.path.basename(file_fullpath)

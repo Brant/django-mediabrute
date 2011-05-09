@@ -57,7 +57,7 @@ def minify_css():
     
     cache_fullpath = os.path.join(cache_dir, cache_name)
     if not os.path.isfile(cache_fullpath):
-        css_top_files, css_std_files, css_bot_files = organize_css_files(app_css_files + main_css_files, css_dir)
+        css_top_files, css_std_files, css_bot_files = organize_css_files(app_css_files + main_css_files)
         
         full_list = css_top_files + css_std_files + css_bot_files
         
