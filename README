@@ -33,7 +33,12 @@ JS_DIR
 	- Defaults to "js"
 
 
+-------------------------------
+
+
+
 Additional Configurations	
+
 	APP_CSS : where app-specific CSS will sit in app directory
 		e.g. : "media/css", 
 		defaults to "css"
