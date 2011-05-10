@@ -60,10 +60,10 @@ Additional Configurations
 					return '{{settings.MEDIA_URL}}';
 					break;
 				case 'img':
-					return siteVars('theme') + 'img/';
+					return siteVars('media') + 'img/';
 					break; 
 				case 'swf':
-					return siteVars('theme') + 'swf/';
+					return siteVars('media') + 'swf/';
 					break; 
 				default:
 					return null;
