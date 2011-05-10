@@ -16,6 +16,7 @@ from mediabrute.util import defaults
 APP_CSS_DIRS = []
 APP_JS_DIRS = []
 
+    
 
 def join_em(mod, ext):
     """

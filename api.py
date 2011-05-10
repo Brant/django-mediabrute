@@ -6,7 +6,6 @@ from mediabrute.util import dirs, api_helpers
 from mediabrute.context_processors import heavy_lifting
 
 
-
 def clear_cache():
     """
     Clears out cache

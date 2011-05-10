@@ -9,6 +9,7 @@ from mediabrute.context_processors.heavy_lifting import generate_cache_name
 from mediabrute.context_processors.heavy_lifting import unlink_cache
 from mediabrute.context_processors.heavy_lifting import organize_css_files
 from mediabrute.context_processors.heavy_lifting import compile_files
+from mediabrute.context_processors.heavy_lifting import get_js_settings
 from django.conf import settings
 from mediabrute import minify
 
@@ -31,6 +32,9 @@ def minify_js():
         js_contents = compile_files(app_js_files + main_js_files)
         unlink_cache(cache_dir, "js")
         cache_file = open(cache_fullpath, "w")
+        
+        
+        js_contents = "%s\n%s" % (get_js_settings(), js_contents)
         cache_file.write(minify.jsmin(js_contents))
         cache_file.close()
         

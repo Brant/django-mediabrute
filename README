@@ -26,7 +26,7 @@ JS_DIR
 	- Defaults to "js"
 
 
-Additional Configurations
+Additional Configurations	
 	APP_CSS : where app-specific CSS will sit in app directory
 		e.g. : "media/css", 
 		defaults to "css"
@@ -43,7 +43,37 @@ Additional Configurations
 		i.e. : things that should have "the final say"
 		e.g. files with lots of media queries for responsive design
 
-Available:
+	JS_SETTINGS_TEMPLATE : location and name of a template for js settings
+		This allows the project to auto-generate some settings for use in JS
+		e.g. "templates/js/config.txt"
+		defaults to not being used (None)
+
+		The template has django.conf.settings available to it as "settings"
+		So, you could do something like this:
+
+		function siteVars(opt){
+			switch (opt){
+				case 'home':
+					return '{% url website.views.hello_world %}';
+					break;
+				case 'media':
+					return '{{settings.MEDIA_URL}}';
+					break;
+				case 'img':
+					return siteVars('theme') + 'img/';
+					break; 
+				case 'swf':
+					return siteVars('theme') + 'swf/';
+					break; 
+				default:
+					return null;
+					break;
+			}
+		}
+
+
+
+Usage:
 Context Processors:
 	mediabrute.context_processors.mini_media
 	mediabrute.context_processors.mini_js

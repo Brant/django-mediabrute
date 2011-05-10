@@ -8,8 +8,26 @@ mediabrute.context_processors.handlers
 import os
 import hashlib
 import glob
-
+from django.conf import settings
+from django.template.loader import render_to_string
 from mediabrute.util import list_css_top_files, list_css_bottom_files
+
+
+def get_js_settings():
+    """
+    Generate settings for javascript cache file
+    if the JS_SETTINGS_TEMPLATE is in the settings file
+    
+    That template is passed "settings", 
+    gives access to the project's settings file
+    """
+    try:
+        tpl = settings.JS_SETTINGS_TEMPLATE
+        print tpl
+    except AttributeError:
+        return ""
+    
+    return render_to_string(tpl, {"settings":settings})
 
 def unlink_cache(cache_dir, ext):
     """
