@@ -23,7 +23,6 @@ def get_js_settings():
     """
     try:
         tpl = settings.JS_SETTINGS_TEMPLATE
-        print tpl
     except AttributeError:
         return ""
     
