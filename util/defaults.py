@@ -5,3 +5,5 @@ APP_CSS = "css"
 APP_JS = "js"
 
 MEDIA_CACHE_DIR = "cache"
+
+JS_SETTINGS_FILENAME = "mediabrute-settings.js"
