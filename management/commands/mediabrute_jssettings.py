@@ -3,7 +3,7 @@ Django-manage.py extension
 python manage.py mediabrute_clearcache
 """
 
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from mediabrute.context_processors.heavy_lifting import get_js_settings
 from mediabrute.util.dirs import get_main_js_dir
 from mediabrute.util import defaults
