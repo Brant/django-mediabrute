@@ -1,3 +1,8 @@
+"""
+Default Settings
+
+See README for info
+"""
 CSS_DIR = "css"
 JS_DIR = "js"
 

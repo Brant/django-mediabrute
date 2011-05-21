@@ -83,8 +83,6 @@ def organize_css_files(file_list):
     
     app css files will come before main css files in each category
     
-    
-    TODO: unit test to prove proper ordering
     """
     
     top_list = []
