@@ -46,12 +46,14 @@ def list_media_in_dirs(ext, dir_list):
     
     if type(dir_list) is list:
         for directory in dir_list:
-            files = filter(lambda x: x.endswith(".%s" % ext), os.listdir(directory))
+#            files = filter(lambda x: x.endswith(".%s" % ext), os.listdir(directory))
+            files = [item for item in os.listdir(directory) if item.endswith(".%s" % ext)]            
             for fle in files:
                 file_list.append(os.path.join(directory, fle))
                 
     elif type(dir_list) is str:
-        files = filter(lambda x: x.endswith(".%s" % ext), os.listdir(dir_list))
+#        files = filter(lambda x: x.endswith(".%s" % ext), os.listdir(dir_list))
+        files = [item for item in os.listdir(dir_list) if item.endswith(".%s" % ext)]
         for fle in files:
             file_list.append(os.path.join(dir_list, fle))
             

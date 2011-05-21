@@ -14,8 +14,6 @@ def mini_media(request):
     """
     Context processor to expose {{ MINI_JS }} and {{ MINI_CSS }}
     """
-    
-    
     minis = {}
     minis.update(mini_css(request))
     minis.update(mini_js(request))
