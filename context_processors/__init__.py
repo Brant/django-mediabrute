@@ -4,8 +4,7 @@ Media Brute Context Processors
 use mini_media for CSS and JS,
 or use mini_js/mini_css separately
 """
-# Disable pylint complaining about request being unused
-# pylint: disable=W0613
+
 
 
 from mediabrute.context_processors.handlers import minify_css, minify_js
@@ -14,6 +13,8 @@ def mini_media(request):
     """
     Context processor to expose {{ MINI_JS }} and {{ MINI_CSS }}
     """
+    # Disable pylint complaining about request being unused
+    # pylint: disable=W0613
     minis = {}
     minis.update(mini_css(request))
     minis.update(mini_js(request))
@@ -25,6 +26,8 @@ def mini_js(request):
     
     Gives a full URL to the minified, cached JS
     """
+    # Disable pylint complaining about request being unused
+    # pylint: disable=W0613
     return {"MINI_JS": minify_js()}
 
 def mini_css(request):
@@ -33,4 +36,6 @@ def mini_css(request):
     
     Gives a full URL to the minified, cached CSS
     """
+    # Disable pylint complaining about request being unused
+    # pylint: disable=W0613
     return {"MINI_CSS": minify_css()}
