@@ -13,8 +13,6 @@ def mini_media(request):
     """
     Context processor to expose {{ MINI_JS }} and {{ MINI_CSS }}
     """
-    # Disable pylint complaining about request being unused
-    # pylint: disable=W0613
     
     minis = {}
     minis.update(mini_css())
