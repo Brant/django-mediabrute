@@ -13,8 +13,7 @@ def mini_media(*args, **kwargs):
     """
     Context processor to expose {{ MINI_JS }} and {{ MINI_CSS }}
     """
-    
-    minis = {}
+
     minis.update(mini_css())
     minis.update(mini_js())
     return minis
@@ -25,9 +24,7 @@ def mini_js():
     
     Gives a full URL to the minified, cached JS
     """
-    # Disable pylint complaining about request being unused
-    # pylint: disable=W0613
-    
+
     return {"MINI_JS": minify_js()}
 
 def mini_css():
@@ -36,7 +33,4 @@ def mini_css():
     
     Gives a full URL to the minified, cached CSS
     """
-    # Disable pylint complaining about request being unused
-    # pylint: disable=W0613
-    
     return {"MINI_CSS": minify_css()}
