@@ -9,10 +9,12 @@ or use mini_js/mini_css separately
 
 from mediabrute.context_processors.handlers import minify_css, minify_js
 
-def mini_media(*args, **kwargs):
+def mini_media(request):
     """
     Context processor to expose {{ MINI_JS }} and {{ MINI_CSS }}
     """
+    minis = {}
+    
     minis.update(mini_css())
     minis.update(mini_js())
     return minis
