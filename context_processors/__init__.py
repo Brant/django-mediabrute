@@ -9,19 +9,17 @@ or use mini_js/mini_css separately
 
 from mediabrute.context_processors.handlers import minify_css, minify_js
 
-def mini_media(request):
+def mini_media(*args, **kwargs):
     """
     Context processor to expose {{ MINI_JS }} and {{ MINI_CSS }}
     """
-    # Disable pylint complaining about request being unused
-    # pylint: disable=W0613
     
     minis = {}
-    minis.update(mini_css(request))
-    minis.update(mini_js(request))
+    minis.update(mini_css())
+    minis.update(mini_js())
     return minis
 
-def mini_js(request):
+def mini_js():
     """
     {{ MINI_JS }} Context Processor
     
@@ -32,7 +30,7 @@ def mini_js(request):
     
     return {"MINI_JS": minify_js()}
 
-def mini_css(request):
+def mini_css():
     """
     {{ MINI_CSS }} Context Processor
     
