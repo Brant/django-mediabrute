@@ -13,7 +13,6 @@ def mini_media(*args, **kwargs):
     """
     Context processor to expose {{ MINI_JS }} and {{ MINI_CSS }}
     """
-
     minis.update(mini_css())
     minis.update(mini_js())
     return minis
@@ -24,7 +23,6 @@ def mini_js():
     
     Gives a full URL to the minified, cached JS
     """
-
     return {"MINI_JS": minify_js()}
 
 def mini_css():
