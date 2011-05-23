@@ -2,7 +2,7 @@
 API for app programming use
 """
 
-from mediabrute.util import dirs, api_helpers, asdf
+from mediabrute.util import dirs, api_helpers
 
 
 def clear_cache():
