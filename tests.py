@@ -128,6 +128,9 @@ class DefaultSettingsTestCase(TestCase):
     Test cases for default settings
     """
     
+    def testYoyo(self):
+        self.assertTrue(False)
+
     def testCssDir(self):
         """
         Main CSS directory default setting test
