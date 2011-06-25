@@ -113,14 +113,14 @@ def find_app_media_dirs():
         css_dir = join_em(mod, css_ext)
         js_dir = join_em(mod, js_ext)
         
-        if os.path.isdir(css_dir):
-            APP_CSS_DIRS.append(css_dir.decode(fs_encoding))
+        if os.path.isdir(css_dir) and not app.startswith("django.contrib"):
+            APP_CSS_DIRS.append((app, css_dir.decode(fs_encoding)))
         
         if os.path.isdir(js_dir):
-            APP_JS_DIRS.append(js_dir.decode(fs_encoding))
+            APP_JS_DIRS.append((app, js_dir.decode(fs_encoding)))
     
 find_app_media_dirs()   
 
-    
+print APP_CSS_DIRS
     
 

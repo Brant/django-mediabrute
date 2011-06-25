@@ -198,7 +198,7 @@ class DefaultSettingsTestCase(TestCase):
         except AttributeError:
             ext = defaults.APP_CSS
         
-        for directory in dirs.APP_CSS_DIRS:
+        for app, directory in dirs.APP_CSS_DIRS:
             self.assertIn("/%s" % ext, directory)
     
     def testClearCache(self):
@@ -219,5 +219,5 @@ class DefaultSettingsTestCase(TestCase):
         except AttributeError:
             ext = defaults.APP_JS
         
-        for directory in dirs.APP_JS_DIRS:
+        for app, directory in dirs.APP_JS_DIRS:
             self.assertIn("/%s" % ext, directory)

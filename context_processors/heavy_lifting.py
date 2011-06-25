@@ -4,7 +4,6 @@ Module to hold "heavy lifting" functions
 Should store most of the processes used in 
 mediabrute.context_processors.handlers
 """
- 
 import os
 import hashlib
 import glob
@@ -45,14 +44,12 @@ def list_media_in_dirs(ext, dir_list):
     file_list = []
     
     if type(dir_list) is list:
-        for directory in dir_list:
-#            files = filter(lambda x: x.endswith(".%s" % ext), os.listdir(directory))
+        for app, directory in dir_list:
             files = [item for item in os.listdir(directory) if item.endswith(".%s" % ext)]            
             for fle in files:
                 file_list.append(os.path.join(directory, fle))
                 
     elif type(dir_list) is str:
-#        files = filter(lambda x: x.endswith(".%s" % ext), os.listdir(dir_list))
         files = [item for item in os.listdir(dir_list) if item.endswith(".%s" % ext)]
         for fle in files:
             file_list.append(os.path.join(dir_list, fle))
@@ -85,8 +82,7 @@ def organize_css_files(file_list):
     
     app css files will come before main css files in each category
     
-    """
-    
+    """    
     top_list = []
     std_list = []
     bot_list = []
