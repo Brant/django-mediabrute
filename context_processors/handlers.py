@@ -40,7 +40,6 @@ def minify_js():
         
     
     return "%s%s/cache/%s" % (settings.MEDIA_URL, dirs.get_main_js_dir(full_path=False), cache_name)
-
     
 
 def minify_css():
@@ -56,8 +55,7 @@ def minify_css():
     main_css_files = list_media_in_dirs("css", css_dir)    
         
     timestamp = latest_timestamp(app_css_files + main_css_files)
-    cache_name = generate_cache_name("css", timestamp)    
-    
+    cache_name = generate_cache_name("css", timestamp)
     
     cache_fullpath = os.path.join(cache_dir, cache_name)
     if not os.path.isfile(cache_fullpath):
@@ -70,7 +68,6 @@ def minify_css():
         css_contents = css_contents.replace('url(', 'url(../')
         css_contents = css_contents.replace('url (', 'url(../')
         css_contents = css_contents.replace('url(../http', 'url(http')
-        
         
         unlink_cache(cache_dir, "css")
         cache_file = open(cache_fullpath, "w")

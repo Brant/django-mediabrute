@@ -56,4 +56,9 @@ def get_all_css_dirs():
     that mediabrute pulls from
     """
     return get_app_css_dirs().append(get_main_css_dir())
-    
+
+def add_separate_css_dir():
+    """
+    TODO: add a css directory tied to an app
+    """
+    pass
