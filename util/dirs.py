@@ -26,6 +26,14 @@ def join_em(mod, ext):
     """
     return os.path.join(os.path.dirname(mod.__file__), ext)
 
+def get_separated_css(app_name):
+    """
+    Return a seperated list of directories by app name
+    """
+    try:
+        return SEPARATE_CSS_DIRS[app_name]
+    except KeyError:
+        return []
 
 def get_separated_js(app_name):
     """
@@ -126,6 +134,7 @@ def sift(app, css_dir, js_dir):
     Sift through CSS and JS, assigning them to 
     either separate app cache dirs or the normal app dirs
     """
+    
     def sift_css(app, css_dir):
         """
         Shift through CSS
@@ -138,7 +147,7 @@ def sift(app, css_dir, js_dir):
                 add_separate_css_dir(app, css_dir)
             else:
                 APP_CSS_DIRS.append((app, css_dir.decode(fs_encoding)))
-                
+        
     def sift_js(app, js_dir):
         """
         Shift through JS
