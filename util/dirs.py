@@ -27,6 +27,15 @@ def join_em(mod, ext):
     return os.path.join(os.path.dirname(mod.__file__), ext)
 
 
+def get_separated_js(app_name):
+    """
+    Return a seperated list of directories by app name
+    """
+    try:
+        return SEPARATE_JS_DIRS[app_name]
+    except KeyError:
+        return []
+
 def generate_cache_dir(media_dir):
     """
     generate the cache directory,
@@ -112,7 +121,7 @@ def get_main_js_dir(full_path=True):
     return js_dir    
 
 
-def sift(app, js_dir, css_dir):
+def sift(app, css_dir, js_dir):
     """
     Sift through CSS and JS, assigning them to 
     either separate app cache dirs or the normal app dirs
@@ -125,7 +134,6 @@ def sift(app, js_dir, css_dir):
         or as part of the normal apps
         """        
         if os.path.isdir(css_dir):
-            
             if app in get_separated_apps("css"):
                 add_separate_css_dir(app, css_dir)
             else:
@@ -181,9 +189,9 @@ def add_separate_js_dir(app, js_dir):
     Add a separate Javascript directory for an app
     """
     try:
-        SEPARATE_JS_DIRS[app].append(js_dir)
+        SEPARATE_JS_DIRS[app].append((app, js_dir))
     except KeyError:
-        SEPARATE_JS_DIRS.update({app: [js_dir,]})
+        SEPARATE_JS_DIRS.update({app: [(app, js_dir),]})
         
 
 def add_separate_css_dir(app, css_dir):
@@ -191,8 +199,8 @@ def add_separate_css_dir(app, css_dir):
     Add a separate CSS directory for an app
     """
     try:
-        SEPARATE_CSS_DIRS[app].append(css_dir)
+        SEPARATE_CSS_DIRS[app].append((app, css_dir))
     except KeyError:
-        SEPARATE_CSS_DIRS.update({app: [css_dir,]})        
+        SEPARATE_CSS_DIRS.update({app: [(app, css_dir),]})        
     
 find_app_media_dirs()

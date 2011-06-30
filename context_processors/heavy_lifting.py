@@ -27,11 +27,15 @@ def get_js_settings():
     
     return render_to_string(tpl, {"settings":settings})
 
-def unlink_cache(cache_dir, ext):
+def unlink_cache(cache_dir, ext, app_name=None):
     """
     Delete cache files of extension ext from cache_dir
     """
-    file_list = glob.glob('%s/%s-*_.%s' % (cache_dir, ext, ext))
+    if not app_name:
+        app_name = ext
+        
+    file_list = glob.glob('%s/%s-*_.%s' % (cache_dir, app_name, ext))
+    
     for file_fullpath in file_list:
         os.unlink(file_fullpath)
 
@@ -68,12 +72,16 @@ def latest_timestamp(files):
     return latest_mod 
         
 
-def generate_cache_name(ext, timestamp):
+def generate_cache_name(ext, timestamp, app_name=None):
     """
     Generate a cache name, based on a timestamp
     """
+    
+    if not app_name:
+        app_name = ext
+    
     timestamp = hashlib.md5(timestamp.__str__()).hexdigest()
-    return "%s-%s_.%s" % (ext, timestamp, ext)
+    return "%s-%s_.%s" % (app_name, timestamp, ext)
 
 
 def organize_css_files(file_list):
