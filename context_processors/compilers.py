@@ -34,7 +34,8 @@ def compile_and_cache_css(css_dirs, cache_dir, app_name=None):
     cache_name = generate_cache_name("css", timestamp, app_name)    
     cache_fullpath = os.path.join(cache_dir, cache_name)
     
-    css_files = organize_css_files(css_files)
+    top, mid, bottom = organize_css_files(css_files)
+    css_files = top + mid + bottom
     
     if not os.path.isfile(cache_fullpath):
         unlink_cache(cache_dir, "css", app_name)
