@@ -7,7 +7,6 @@ from mediabrute.context_processors.heavy_lifting import list_media_in_dirs
 from mediabrute.context_processors.heavy_lifting import latest_timestamp
 from mediabrute.context_processors.heavy_lifting import generate_cache_name
 from mediabrute.context_processors.heavy_lifting import unlink_cache
-from mediabrute.context_processors.heavy_lifting import organize_css_files
 from mediabrute.context_processors.heavy_lifting import compile_files
 from mediabrute.context_processors.heavy_lifting import get_js_settings
 from django.conf import settings
