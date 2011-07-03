@@ -10,6 +10,7 @@ from mediabrute.context_processors.heavy_lifting import compile_files
 from mediabrute.context_processors.heavy_lifting import list_media_in_dirs
 from mediabrute.context_processors.heavy_lifting import latest_timestamp
 from mediabrute.context_processors.heavy_lifting import get_js_settings
+from mediabrute.context_processors.heavy_lifting import organize_css_files
 
 from mediabrute import minify
 
@@ -32,6 +33,8 @@ def compile_and_cache_css(css_dirs, cache_dir, app_name=None):
     
     cache_name = generate_cache_name("css", timestamp, app_name)    
     cache_fullpath = os.path.join(cache_dir, cache_name)
+    
+    css_files = organize_css_files(css_files)
     
     if not os.path.isfile(cache_fullpath):
         unlink_cache(cache_dir, "css", app_name)
