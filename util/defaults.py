@@ -13,5 +13,5 @@ MEDIA_CACHE_DIR = "cache"
 
 JS_SETTINGS_FILENAME = "mediabrute-settings.js"
 
-SEPERATE_CSS = []
+SEPARATE_CSS = []
 SEPARATE_JS = []
