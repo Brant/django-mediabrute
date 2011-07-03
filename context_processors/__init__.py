@@ -14,11 +14,20 @@ def mini_media(request):
     """
     
     minis = {}
-    minis.update(mini_css(resolve(request.path).app_name))
-    minis.update(mini_js(resolve(request.path).app_name))
+    
+    try:
+        minis.update(mini_css(resolve(request.path).app_name))
+    except AttributeError:
+        minis.update(mini_css())
+        
+    try:
+        minis.update(mini_js(resolve(request.path).app_name))
+    except AttributeError:
+        minis.update(mini_js())
+        
     return minis
 
-def mini_js(app_name):
+def mini_js(app_name=None):
     """
     {{ MINI_JS }} Context Processor
     
@@ -26,7 +35,7 @@ def mini_js(app_name):
     """
     return {"MINI_JS": minify_js(app_name)}
 
-def mini_css(app_name):
+def mini_css(app_name=None):
     """
     {{ MINI_CSS }} Context Processor
     
