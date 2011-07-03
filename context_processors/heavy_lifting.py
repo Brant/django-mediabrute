@@ -27,14 +27,18 @@ def get_js_settings():
     
     return render_to_string(tpl, {"settings":settings})
 
-def unlink_cache(cache_dir, ext, app_name=None):
+def unlink_cache(cache_dir, ext, app_name=None, unlink_all=False):
     """
     Delete cache files of extension ext from cache_dir
     """
+    
     if not app_name:
         app_name = ext
-        
-    file_list = glob.glob('%s/%s-*_.%s' % (cache_dir, app_name, ext))
+    
+    if unlink_all:
+        file_list = glob.glob('%s/*-*_.%s' % (cache_dir, ext))
+    else:
+        file_list = glob.glob('%s/%s-*_.%s' % (cache_dir, app_name, ext))
     
     for file_fullpath in file_list:
         os.unlink(file_fullpath)

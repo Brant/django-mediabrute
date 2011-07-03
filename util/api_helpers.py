@@ -12,5 +12,5 @@ def clear_cache():
     js_dir = dirs.get_main_js_dir()
     css_dir = dirs.get_main_css_dir()
     
-    heavy_lifting.unlink_cache(dirs.generate_cache_dir(js_dir), "js")
-    heavy_lifting.unlink_cache(dirs.generate_cache_dir(css_dir), "css")
+    heavy_lifting.unlink_cache(dirs.generate_cache_dir(js_dir), "js", unlink_all=True)
+    heavy_lifting.unlink_cache(dirs.generate_cache_dir(css_dir), "css", unlink_all=True)
