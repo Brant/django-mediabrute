@@ -17,12 +17,12 @@ def mini_media(request):
     
     try:
         minis.update(mini_css(resolve(request.path).app_name))
-    except AttributeError:
+    except:
         minis.update(mini_css())
         
     try:
         minis.update(mini_js(resolve(request.path).app_name))
-    except AttributeError:
+    except:
         minis.update(mini_js())
         
     return minis
