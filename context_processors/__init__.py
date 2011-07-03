@@ -6,7 +6,7 @@ or use mini_js/mini_css separately
 """
 
 from mediabrute.context_processors.handlers import minify_css, minify_js
-from django.core.urlresolvers import resolve
+from django.core.urlresolvers import resolve, Resolver404
 
 def mini_media(request):
     """
@@ -17,12 +17,12 @@ def mini_media(request):
     
     try:
         minis.update(mini_css(resolve(request.path).app_name))
-    except:
+    except Resolver404, AttributeError:
         minis.update(mini_css())
         
     try:
         minis.update(mini_js(resolve(request.path).app_name))
-    except:
+    except Resolver404, AttributeError:
         minis.update(mini_js())
         
     return minis
