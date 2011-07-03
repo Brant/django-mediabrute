@@ -7,8 +7,14 @@ It will crawl through a "main" js and css directory (2 different directories) wh
 collect -> compile -> minify -> write to cache
 
 In your templates, then, you can access the cache'd files using the context processors.
-<link rel="stylesheet" type="text/css" href="{{ MINI_CSS }}" />
-<script src="{{ MINI_JS }}"></script>
+
+{% for sheet in MINI_CSS %}
+	<link rel="stylesheet" type="text/css" href="{{ sheet }}" />
+{% endfor %}
+
+{% for script in MINI_JS %}
+	<script src="{{ script }}"></script>
+{% endfor %}
 
 
 It does timestamp checking, so it only updates the cache'd file when it finds a css or js file that has been modified since the cache'd file was created. (It does this for CSS and JS separately).
@@ -34,6 +40,40 @@ JS_DIR
 
 
 -------------------------------
+
+
+
+Separation Configurations
+
+You can configure mediabrute to separate out certain apps and cache their media (css, js) separately.
+In order to do this, two things are needed.
+
+1) Name the app in your URL conf
+	e.g. 
+		
+		urlpatterns = patterns('',
+		    (r'^', include('some_app.urls', app_name="some_app"))
+		)
+	The app_name must match the name of the app, as written in the INSTALLED_APPS setting
+2) Put the app_name in your settings, as part of SEPARATE_CSS and/or SEPARATE_JS
+	see below
+	
+	
+	SEPARATE_CSS : A list of apps (found in INSTALLED_APPS) that should be separated
+		e.g. SEPARATE_CSS = ['some_app', 'some_other_app']
+		default = []
+
+	SEPARATE_JS : A list of apps (found in INSTALLED_APPS) that should be separated
+		e.g. SEPARATE_JS = ['some_app', 'some_other_app']
+		default = []
+
+These apps will have their css/js cached separately and will be part of the context processor 
+ONLY when a visitor is inside the app's url confs
+	
+
+
+-------------------------------
+
 
 
 
@@ -82,6 +122,7 @@ Additional Configurations
 					break;
 			}
 		}
+
 
 
 -------------------------------
