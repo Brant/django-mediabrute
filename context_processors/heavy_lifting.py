@@ -48,7 +48,7 @@ def list_media_in_dirs(ext, dir_list):
     file_list = []
     
     if type(dir_list) is list:        
-        for app, directory in dir_list[0]:
+        for app, directory in dir_list:
             files = [item for item in os.listdir(directory) if item.endswith(".%s" % ext)]            
             for fle in files:
                 file_list.append(os.path.join(directory, fle))
