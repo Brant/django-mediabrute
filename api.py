@@ -63,7 +63,7 @@ def add_separate_js_dir(app, some_dir):
     """
     add_separate_js_dir(app, some_dir)
 
-def add_separate_css_dir():
+def add_separate_css_dir(app, some_dir):
     """
     Add a directory of CSS files, tied to an app
     """
