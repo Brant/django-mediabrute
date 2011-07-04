@@ -57,8 +57,14 @@ def get_all_css_dirs():
     """
     return get_app_css_dirs().append(get_main_css_dir())
 
+def add_separate_js_dir(app, some_dir):
+    """
+    Add a directory of JS files, tied to an app
+    """
+    add_separate_js_dir(app, some_dir)
+
 def add_separate_css_dir():
     """
-    TODO: add a css directory tied to an app
+    Add a directory of CSS files, tied to an app
     """
-    pass
+    add_separate_css_dir(app, some_dir)
