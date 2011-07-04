@@ -7,6 +7,8 @@ Replace this with more appropriate tests for your application.
 
 from django.test import TestCase
 from django.conf import settings
+from django.http import HttpRequest
+
 
 from mediabrute.util import dirs, api_helpers, defaults
 from mediabrute import api
@@ -111,6 +113,7 @@ class PublicApiTestCase(TestCase):
     Tests relating to mediabrute.api
     """
     
+        
     def testParameterlessCalls(self):
         """
         find and call all API functions
@@ -122,7 +125,9 @@ class PublicApiTestCase(TestCase):
                 spec = inspect.getargspec(func)
                 if not spec.args and not spec.varargs and not spec.keywords and not spec.defaults:
                     func()
-
+                    
+    
+        
 class DefaultSettingsTestCase(TestCase):
     """
     Test cases for default settings

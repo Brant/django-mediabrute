@@ -4,6 +4,29 @@ API for app programming use
 
 from mediabrute.util import dirs, api_helpers
 
+def get_cached_css(request):
+    """
+    Get the cached CSS sheets
+    
+    Fire off the Context Processor
+    Triggers a cache if necessary
+    
+    Returns a list... position '0' will always be the main CSS file
+    after that, the positions are app files
+    """
+    return api_helpers.cached_css(request)
+
+def get_cached_js(request):
+    """
+    Get the cached JS scripts
+    
+    Fire off the Context Processor
+    Triggers a cache if necessary
+    
+    Returns a list... position '0' will always be the main JS file
+    after that, the positions are app files
+    """
+    return api_helpers.cached_js(request)
 
 def clear_cache():
     """
@@ -62,6 +85,7 @@ def add_separate_js_dir(app, some_dir):
     Add a directory of JS files, tied to an app
     """
     add_separate_js_dir(app, some_dir)
+    
 
 def add_separate_css_dir(app, some_dir):
     """
