@@ -131,7 +131,7 @@ def compile_files(file_list):
     compiled_str = ""
     
     for file_fullpath in file_list:
-        print file_fullpath
+        
         the_file = open(file_fullpath)
         contents = the_file.read()
         the_file.close()
