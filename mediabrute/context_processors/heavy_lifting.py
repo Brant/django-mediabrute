@@ -4,7 +4,6 @@ Module to hold "heavy lifting" functions
 Should store most of the processes used in 
 mediabrute.context_processors.handlers
 """
- 
 import os
 import hashlib
 import glob
@@ -28,11 +27,19 @@ def get_js_settings():
     
     return render_to_string(tpl, {"settings":settings})
 
-def unlink_cache(cache_dir, ext):
+def unlink_cache(cache_dir, ext, app_name=None, unlink_all=False):
     """
     Delete cache files of extension ext from cache_dir
     """
-    file_list = glob.glob('%s/%s-*_.%s' % (cache_dir, ext, ext))
+    
+    if not app_name:
+        app_name = ext
+    
+    if unlink_all:
+        file_list = glob.glob('%s/*-*_.%s' % (cache_dir, ext))
+    else:
+        file_list = glob.glob('%s/%s-*_.%s' % (cache_dir, app_name, ext))
+    
     for file_fullpath in file_list:
         os.unlink(file_fullpath)
 
@@ -44,14 +51,14 @@ def list_media_in_dirs(ext, dir_list):
     """
     file_list = []
     
-    if type(dir_list) is list:
-        for directory in dir_list:
-            files = filter(lambda x: x.endswith(".%s" % ext), os.listdir(directory))
+    if type(dir_list) is list:        
+        for app, directory in dir_list:
+            files = [item for item in os.listdir(directory) if item.endswith(".%s" % ext)]            
             for fle in files:
                 file_list.append(os.path.join(directory, fle))
                 
-    elif type(dir_list) is str:
-        files = filter(lambda x: x.endswith(".%s" % ext), os.listdir(dir_list))
+    elif type(dir_list) is str:        
+        files = [item for item in os.listdir(dir_list) if item.endswith(".%s" % ext)]
         for fle in files:
             file_list.append(os.path.join(dir_list, fle))
             
@@ -69,12 +76,16 @@ def latest_timestamp(files):
     return latest_mod 
         
 
-def generate_cache_name(ext, timestamp):
+def generate_cache_name(ext, timestamp, app_name=None):
     """
     Generate a cache name, based on a timestamp
     """
+    
+    if not app_name:
+        app_name = ext
+    
     timestamp = hashlib.md5(timestamp.__str__()).hexdigest()
-    return "%s-%s_.%s" % (ext, timestamp, ext)
+    return "%s-%s_.%s" % (app_name, timestamp, ext)
 
 
 def organize_css_files(file_list):
@@ -83,10 +94,7 @@ def organize_css_files(file_list):
     
     app css files will come before main css files in each category
     
-    
-    TODO: unit test to prove proper ordering
-    """
-    
+    """    
     top_list = []
     std_list = []
     bot_list = []
@@ -123,6 +131,7 @@ def compile_files(file_list):
     compiled_str = ""
     
     for file_fullpath in file_list:
+        
         the_file = open(file_fullpath)
         contents = the_file.read()
         the_file.close()
