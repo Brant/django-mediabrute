@@ -85,7 +85,7 @@ Additional Configurations
 
 	APP_JS : where app-specific JS will sit in app directory
 		e.g. : "media/js", 
-		defaults to "css"
+		defaults to "js"
 
 	CSS_TOP_FILES : the list of files that should go at the top of the final CSS file
 		i.e. : things that should be overrideable
