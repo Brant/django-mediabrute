@@ -160,9 +160,10 @@ An alternative to allowing mediabrute to auto generate the js settings file
 * If using this, simply do not add JS_SETTINGS_TEMPLATE setting
 * see JS_SETTINGS_TEMPLATE setting above
 
-    manage.py mediabrute_jssettings <filename>
-
 .
+
+    manage.py mediabrute_jssettings filename.txt
+
 
 API
 ===
