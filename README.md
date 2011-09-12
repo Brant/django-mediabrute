@@ -10,12 +10,12 @@ collect -> compile -> minify -> write to cache
 In your templates, then, you can access the cache'd files using the context processors.
 
     {% for sheet in MINI_CSS %}
-        link rel="stylesheet" type="text/css" href="{{ sheet }}" /
+    	<link rel="stylesheet" type="text/css" href="{{ sheet }}" />
     {% endfor %}
 
-{% for script in MINI_JS %}
-	<script src="{{ script }}"></script>
-{% endfor %}
+    {% for script in MINI_JS %}
+    	<script src="{{ script }}"></script>
+    {% endfor %}
 
 
 It does timestamp checking, so it only updates the cache'd file when it finds a css or js file that has been modified since the cache'd file was created. (It does this for CSS and JS separately).
