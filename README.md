@@ -21,7 +21,6 @@ In your templates, then, you can access the cache'd files using the context proc
 It does timestamp checking, so it only updates the cache'd file when it finds a css or js file that has been modified since the cache'd file was created. (It does this for CSS and JS separately).
 
 It is great for projects where only 1 js and/or css file needs to be cached for the entire site/project.
-
 Important Configurations
 ========================
 
