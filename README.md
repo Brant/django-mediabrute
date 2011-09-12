@@ -43,16 +43,15 @@ Separation Configurations
 You can configure mediabrute to separate out certain apps and cache their media (css, js) separately.
 In order to do this, two things are needed.
 
-1) Name the app in your URL conf
-	e.g. 
-		
-		urlpatterns = patterns('',
-		    (r'^', include('some_app.urls', app_name="some_app"))
-		)
+1) Name the app in your URL conf 
+
+    urlpatterns = patterns('', 
+    	(r'^', include('some_app.urls', app_name="some_app"))
+    )
+    
 	The app_name must match the name of the app, as written in the INSTALLED_APPS setting
-2) Put the app_name in your settings, as part of SEPARATE_CSS and/or SEPARATE_JS
-	see below
 	
+2) Put the app_name in your settings, as part of SEPARATE_CSS and/or SEPARATE_JS
 	
 	SEPARATE_CSS : A list of apps (found in INSTALLED_APPS) that should be separated
 		e.g. SEPARATE_CSS = ['some_app', 'some_other_app']
@@ -92,25 +91,25 @@ Additional Configurations
 		The template has django.conf.settings available to it as "settings"
 		So, you could do something like this:
 
-		function siteVars(opt){
-			switch (opt){
-				case 'home':
-					return '{% url website.views.hello_world %}';
-					break;
-				case 'media':
-					return '{{settings.MEDIA_URL}}';
-					break;
-				case 'img':
-					return siteVars('media') + 'img/';
-					break; 
-				case 'swf':
-					return siteVars('media') + 'swf/';
-					break; 
-				default:
-					return null;
-					break;
-			}
-		}
+    	function siteVars(opt){
+    		switch (opt){
+    			case 'home':
+    				return '{% url website.views.hello_world %}';
+    				break;
+    			case 'media':
+    				return '{{settings.MEDIA_URL}}';
+    				break;
+    			case 'img':
+    				return siteVars('media') + 'img/';
+    				break; 
+    			case 'swf':
+    				return siteVars('media') + 'swf/';
+    				break; 
+    			default:
+    				return null;
+    				break;
+    		}
+    	}
 
 Usage
 =====
