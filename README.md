@@ -33,6 +33,7 @@ At the very least, these two settings should be added to your django settings fi
     - e.g. CSS_DIR = "css"
     - Main CSS directory inside MEDIA_ROOT, 
     - Defaults to "css"
+    
 * JS_DIR 
     - e.g. JS_DIR = "js"
     -  Main JS directory inside MEDIA_ROOT
@@ -42,6 +43,7 @@ Separation Configurations
 =========================
 
 You can configure mediabrute to separate out certain apps and cache their media (css, js) separately.
+
 In order to do this, two things are needed.
 
 1) Name the app in your URL conf 
@@ -62,8 +64,7 @@ In order to do this, two things are needed.
 		e.g. SEPARATE_JS = ['some_app', 'some_other_app']
 		default = []
 
-These apps will have their css/js cached separately and will be part of the context processor 
-ONLY when a visitor is inside the app's url confs
+These apps will have their css/js cached separately and will be part of the context processor ONLY when a visitor is inside the app's url confs
 
 Additional Configurations	
 =========================
@@ -136,11 +137,13 @@ Context Processors
 Management commands
 -------------------
 
-## Clearing the Cache
+There are a couple of management commands that can be called for mediabrute
+
+### Clearing the Cache
 Clears the cached CSS and JS files
     manage.py mediabrute_clearcache
 
-## Generate JS settings
+### Generate JS settings
 An alternative to allowing mediabrute to auto generate the js settings file
 * (see JS_SETTINGS_TEMPLATE setting above)
 * If using this, simply do not add JS_SETTINGS_TEMPLATE setting		
