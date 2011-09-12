@@ -28,14 +28,15 @@ Important Configurations
 ========================
 
 At the very least, these two settings should be added to your django settings file.
-CSS_DIR
-	e.g. CSS_DIR = "css"
-	- Main CSS directory inside MEDIA_ROOT, 
-	- Defaults to "css"
-JS_DIR 
-	e.g. JS_DIR = "js"
-	-  Main JS directory inside MEDIA_ROOT
-	- Defaults to "js"
+
+* CSS_DIR
+    - e.g. CSS_DIR = "css"
+    - Main CSS directory inside MEDIA_ROOT, 
+    - Defaults to "css"
+* JS_DIR 
+    - e.g. JS_DIR = "js"
+    -  Main JS directory inside MEDIA_ROOT
+    - Defaults to "js"
 
 Separation Configurations
 =========================
@@ -128,9 +129,9 @@ Usage
 Context Processors
 ------------------
 
-	mediabrute.context_processors.mini_media
-	mediabrute.context_processors.mini_js
-	mediabrute.context_processors.mini_css
+* mediabrute.context_processors.mini_media
+* mediabrute.context_processors.mini_js
+* mediabrute.context_processors.mini_css
 
 Management commands
 -------------------
