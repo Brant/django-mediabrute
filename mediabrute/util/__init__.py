@@ -15,6 +15,7 @@ def list_css_top_files():
     except AttributeError:
         return []
     
+    
 def list_css_bottom_files():
     """
     Grabs CSS_BOTTOM_FILES list

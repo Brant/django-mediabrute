@@ -26,6 +26,7 @@ def join_em(mod, ext):
     """
     return os.path.join(os.path.dirname(mod.__file__), ext)
 
+
 def get_separated_css(app_name):
     """
     Return a seperated list of directories by app name
@@ -35,6 +36,7 @@ def get_separated_css(app_name):
     except KeyError:
         return []
 
+
 def get_separated_js(app_name):
     """
     Return a seperated list of directories by app name
@@ -43,6 +45,7 @@ def get_separated_js(app_name):
         return SEPARATE_JS_DIRS[app_name]
     except KeyError:
         return []
+
 
 def generate_cache_dir(media_dir):
     """

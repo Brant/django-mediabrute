@@ -27,11 +27,11 @@ def get_js_settings():
     
     return render_to_string(tpl, {"settings":settings})
 
+
 def unlink_cache(cache_dir, ext, app_name=None, unlink_all=False):
     """
     Delete cache files of extension ext from cache_dir
     """
-    
     if not app_name:
         app_name = ext
     
@@ -42,6 +42,7 @@ def unlink_cache(cache_dir, ext, app_name=None, unlink_all=False):
     
     for file_fullpath in file_list:
         os.unlink(file_fullpath)
+
 
 def list_media_in_dirs(ext, dir_list):
     """
@@ -64,6 +65,7 @@ def list_media_in_dirs(ext, dir_list):
             
     return file_list
 
+
 def latest_timestamp(files):
     """
     Get the timestamp for the latest modified file in a list of files
@@ -80,7 +82,6 @@ def generate_cache_name(ext, timestamp, app_name=None):
     """
     Generate a cache name, based on a timestamp
     """
-    
     if not app_name:
         app_name = ext
     
@@ -93,7 +94,6 @@ def organize_css_files(file_list):
     Organize the mass of CSS files into top, middle, bottom
     
     app css files will come before main css files in each category
-    
     """    
     top_list = []
     std_list = []
@@ -137,6 +137,4 @@ def compile_files(file_list):
         the_file.close()
         compiled_str = "%s%s" % (compiled_str, contents) 
         
-        
     return compiled_str
-    
