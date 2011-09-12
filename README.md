@@ -10,7 +10,7 @@ collect -> compile -> minify -> write to cache
 In your templates, then, you can access the cache'd files using the context processors.
 
 {% for sheet in MINI_CSS %}
-	\<link rel="stylesheet" type="text/css" href="{{ sheet }}" /\>
+link rel="stylesheet" type="text/css" href="{{ sheet }}" /
 {% endfor %}
 
 {% for script in MINI_JS %}
