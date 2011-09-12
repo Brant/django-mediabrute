@@ -13,6 +13,7 @@ In your templates, then, you can access the cache'd files using the context proc
     	<link rel="stylesheet" type="text/css" href="{{ sheet }}" />
     {% endfor %}
 
+and
 
     {% for script in MINI_JS %}
     	<script src="{{ script }}"></script>
