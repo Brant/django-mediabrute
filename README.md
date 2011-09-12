@@ -22,7 +22,6 @@ It does timestamp checking, so it only updates the cache'd file when it finds a 
 
 It is great for projects where only 1 js and/or css file needs to be cached for the entire site/project.
 
-
 Important Configurations
 ========================
 
@@ -35,7 +34,6 @@ JS_DIR
 	e.g. JS_DIR = "js"
 	-  Main JS directory inside MEDIA_ROOT
 	- Defaults to "js"
-
 
 Separation Configurations
 =========================
@@ -64,7 +62,6 @@ In order to do this, two things are needed.
 
 These apps will have their css/js cached separately and will be part of the context processor 
 ONLY when a visitor is inside the app's url confs
-
 
 Additional Configurations	
 =========================
@@ -113,7 +110,6 @@ Additional Configurations
 			}
 		}
 
-
 Usage
 =====
 
@@ -134,7 +130,6 @@ Management commands
 		An alternative to allowing mediabrute to auto generate the js settings file
 		(see JS_SETTINGS_TEMPLATE setting above)
 		If using this, simply do not add JS_SETTINGS_TEMPLATE setting
-
 
 API
 ===
