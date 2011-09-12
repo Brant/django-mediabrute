@@ -7,18 +7,6 @@ It will crawl through a "main" js and css directory (2 different directories) wh
 
 collect -> compile -> minify -> write to cache
 
-In your templates, then, you can access the cache'd files using the context processors.
-
-    {% for sheet in MINI_CSS %}
-    	<link rel="stylesheet" type="text/css" href="{{ sheet }}" />
-    {% endfor %}
-
-and
-
-    {% for script in MINI_JS %}
-    	<script src="{{ script }}"></script>
-    {% endfor %}
-
 
 It does timestamp checking, so it only updates the cache'd file when it finds a css or js file that has been modified since the cache'd file was created. (It does this for CSS and JS separately).
 
@@ -38,6 +26,33 @@ At the very least, these two settings should be added to your django settings fi
     - e.g. JS_DIR = "js"
     -  Main JS directory inside MEDIA_ROOT
     - Defaults to "js"
+
+Usage
+=====
+
+Context Processors
+------------------
+
+You can use the JS or CSS minifiers separately or just use the mini_media to have them both available
+
+* mediabrute.context_processors.mini_media
+* mediabrute.context_processors.mini_js
+* mediabrute.context_processors.mini_css
+
+Add to Templates
+------------------
+In your templates, then, you can access the cache'd files using the context processors.
+
+    {% for sheet in MINI_CSS %}
+    	<link rel="stylesheet" type="text/css" href="{{ sheet }}" />
+    {% endfor %}
+
+and
+
+    {% for script in MINI_JS %}
+    	<script src="{{ script }}"></script>
+    {% endfor %}
+
 
 Separation Configurations
 =========================
@@ -124,18 +139,9 @@ So, you could do something like this:
 		}
 	}
 
-Usage
-=====
-
-Context Processors
-------------------
-
-* mediabrute.context_processors.mini_media
-* mediabrute.context_processors.mini_js
-* mediabrute.context_processors.mini_css
 
 Management commands
--------------------
+===================
 
 There are a couple of management commands that can be called for mediabrute
 
