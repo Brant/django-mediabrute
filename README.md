@@ -29,6 +29,7 @@ At the very least, these two settings should be added to your django settings fi
 
 Usage
 =====
+Basic usage is just a matter of adding any one of the three context processors to your settings file. Then, the minified media can be accessed in your templates.
 
 Context Processors
 ------------------
@@ -161,6 +162,7 @@ An alternative to allowing mediabrute to auto generate the js settings file
 
     manage.py mediabrute_jssettings <filename>
 
+.
 
 API
 ===
