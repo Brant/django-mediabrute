@@ -142,7 +142,9 @@ def sift(app, css_dir, js_dir):
         Decide if it belongs separated 
         or as part of the normal apps
         """        
+        
         if os.path.isdir(css_dir):
+            
             if app in get_separated_apps("css"):
                 add_separate_css_dir(app, css_dir)
             else:

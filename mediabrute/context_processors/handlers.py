@@ -16,7 +16,7 @@ def minify_js(app_name):
     
     cache_files = [compile_and_cache_js(js_dirs, cache_dir, add_settings=True),]
     
-    if app_name:
+    if app_name and app_name in dirs.get_separated_apps("js"):
         cache_files.append(compile_and_cache_js([dirs.get_separated_js(app_name), ], cache_dir, app_name=app_name))    
     
         
@@ -33,9 +33,10 @@ def minify_css(app_name):
     css_dirs = [css_dir, dirs.APP_CSS_DIRS]
 
     cache_files = [compile_and_cache_css(css_dirs, cache_dir), ]
-        
-    if app_name:
+    
+    if app_name and app_name in dirs.get_separated_apps("css"):
         cache_files.append(compile_and_cache_css([dirs.get_separated_css(app_name), ], cache_dir, app_name=app_name))
+        
         
     return ["%s%s/cache/%s" % (settings.MEDIA_URL, dirs.get_main_css_dir(full_path=False), cache_name) for cache_name in cache_files]
 
