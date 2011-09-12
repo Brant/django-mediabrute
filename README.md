@@ -148,11 +148,11 @@ API
 
 from mediabrute import api
 
-api.clear_cache() : clears cached js and css files
-api.get_app_css_dirs() : get a list of css directories found inside apps (not inside the main css directory)
-api.get_app_js_dirs() : get a list of js directories found inside apps (not inside the main js directory)
-api.get_main_js_dir() : get the main js directory that mediabrute will pull from (this is the one inside MEDIA_ROOT)
-api.get_main_css_dir() : get the main css directory that mediabrute will pull from (this is the one inside MEDIA_ROOT)
+* api.clear_cache() : clears cached js and css files
+* api.get_app_css_dirs() : get a list of css directories found inside apps (not inside the main css directory)
+* api.get_app_js_dirs() : get a list of js directories found inside apps (not inside the main js directory)
+* api.get_main_js_dir() : get the main js directory that mediabrute will pull from (this is the one inside MEDIA_ROOT)
+* api.get_main_css_dir() : get the main css directory that mediabrute will pull from (this is the one inside MEDIA_ROOT)
 
 
 	
