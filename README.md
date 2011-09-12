@@ -21,7 +21,8 @@ At the very least, these two settings should be added to your django settings fi
     - e.g. CSS_DIR = "css"
     - Main CSS directory inside MEDIA_ROOT, 
     - Defaults to "css"
-    
+
+
 * JS_DIR 
     - e.g. JS_DIR = "js"
     -  Main JS directory inside MEDIA_ROOT
