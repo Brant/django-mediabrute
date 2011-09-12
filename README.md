@@ -67,29 +67,39 @@ ONLY when a visitor is inside the app's url confs
 Additional Configurations	
 =========================
 
-APP_CSS : where app-specific CSS will sit in app directory
-	e.g. : "media/css", 
-	defaults to "css"
+APP_CSS
+-------
+where app-specific CSS will sit in app directory
+e.g. : "media/css", 
+defaults to "css"
 	
-APP_JS : where app-specific JS will sit in app directory
-	e.g. : "media/js", 
-	defaults to "js"
+APP_JS
+------
+where app-specific JS will sit in app directory
+e.g. : "media/js", 
+defaults to "js"
 	
-CSS_TOP_FILES : the list of files that should go at the top of the final CSS file
-	i.e. : things that should be overrideable
-	e.g. css resets, other standard sheets
+CSS_TOP_FILES
+-------------
+the list of files that should go at the top of the final CSS file
+i.e. : things that should be overrideable
+e.g. css resets, other standard sheets
 	
-CSS_BOTTOM_FILES : the list of filenames that should go at the bottom of the final CSS file
-	i.e. : things that should have "the final say"
-	e.g. files with lots of media queries for responsive design
+CSS_BOTTOM_FILES
+----------------
+the list of filenames that should go at the bottom of the final CSS file
+i.e. : things that should have "the final say"
+e.g. files with lots of media queries for responsive design
 
-JS_SETTINGS_TEMPLATE : location and name of a template for js settings
-	This allows the project to auto-generate some settings for use in JS
-	e.g. "templates/js/config.txt"
-	defaults to not being used (None)
+JS_SETTINGS_TEMPLATE
+--------------------
+location and name of a template for js settings
+This allows the project to auto-generate some settings for use in JS
+e.g. "templates/js/config.txt"
+defaults to not being used (None)
 
-	The template has django.conf.settings available to it as "settings"
-	So, you could do something like this:
+The template has django.conf.settings available to it as "settings"
+So, you could do something like this:
 
 	function siteVars(opt){
 		switch (opt){
