@@ -4,6 +4,14 @@ API for app programming use
 
 from mediabrute.util import dirs, api_helpers
 
+def minify_css(css=None, css_file=None):
+    """
+    Minify either a file or a string of CSS
+    """
+    if not css and not css_file:
+        print "You must provide either some CSS as a string or the path to a file" 
+    
+
 def get_cached_css(request):
     """
     Get the cached CSS sheets
