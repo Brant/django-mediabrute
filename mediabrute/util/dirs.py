@@ -20,6 +20,34 @@ SEPARATE_CSS_DIRS = {}
 SEPARATE_JS_DIRS = {}
 
 
+def get_root():
+    """
+    Get the root directory that we will be working from
+    
+    Could be STATIC_ROOT or MEDIA_ROOT
+    
+    Default to STATIC_ROOT
+    """
+    try:
+        if not settings.MEDIABRUTE_USE_STATIC:
+            return settings.MEDIA_ROOT
+    except AttributeError:
+        pass
+    
+    return settings.STATIC_ROOT
+
+def get_serving_url():
+    """
+    What URL base are we serving media out of
+    """
+    try:
+        if not settings.MEDIABRUTE_USE_STATIC:
+            return settings.MEDIA_URL
+    except AttributeError:
+        pass
+    
+    return settings.STATIC_URL
+
 def join_em(mod, ext):
     """
     Join app directory and "extension" directory
@@ -54,9 +82,9 @@ def generate_cache_dir(media_dir):
     create directory if needed
     """
     try:
-        ext = settings.MEDIA_CACHE_DIR
-    except AttributeError:
-        ext = defaults.MEDIA_CACHE_DIR
+        ext = settings.MEDIABRUTE_CACHE_DIR
+    except:
+        ext = defaults.MEDIABRUTE_CACHE_DIR
     
     fullpath = os.path.join(media_dir, ext)
     if not os.path.isdir(fullpath):
@@ -110,7 +138,7 @@ def get_main_css_dir(full_path=True):
         css_dir = defaults.CSS_DIR
         
     if full_path:
-        return os.path.join(settings.MEDIA_ROOT, css_dir)
+        return os.path.join(get_root(), css_dir)
         
     return css_dir    
     
@@ -127,7 +155,7 @@ def get_main_js_dir(full_path=True):
         js_dir = defaults.JS_DIR
         
     if full_path:
-        return os.path.join(settings.MEDIA_ROOT, js_dir)
+        return os.path.join(get_root(), js_dir)
         
     return js_dir    
 

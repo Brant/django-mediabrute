@@ -148,7 +148,7 @@ class DefaultSettingsTestCase(TestCase):
         except AttributeError:
             ext_compare = defaults.CSS_DIR
             
-        fullpath_compare = os.path.join(settings.MEDIA_ROOT, ext_compare)
+        fullpath_compare = os.path.join(dirs.get_root(), ext_compare)
         
         self.assertEquals(fullpath_compare, fullpath)
         self.assertEquals(ext_compare, ext_only)
@@ -168,7 +168,7 @@ class DefaultSettingsTestCase(TestCase):
         except AttributeError:
             ext_compare = defaults.JS_DIR
             
-        fullpath_compare = os.path.join(settings.MEDIA_ROOT, ext_compare)
+        fullpath_compare = os.path.join(dirs.get_root(), ext_compare)
         
         self.assertEquals(fullpath_compare, fullpath)
         self.assertEquals(ext_compare, ext_only)

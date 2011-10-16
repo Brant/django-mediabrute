@@ -88,6 +88,13 @@ These apps will have their css/js cached separately and will be part of the cont
 Additional Configurations	
 =========================
 
+MEDIABRUTE_USE_STATIC
+--------------------
+* set to False if you are using MEDIA_ROOT for your static stuff instead of STATIC_ROOT
+* Useful for apps that were created before Django 1.3, where STATIC stuff was introduced
+* e.g. MEDIABRUTE_USE_STATIC = False
+* defaults to True
+
 APP_CSS
 -------
 * where app-specific CSS will sit in app directory
