@@ -10,7 +10,7 @@ setup(
     url = 'http://github.com/Brant/django-mediabrute',
     license = 'GPL',
     description = "Django MediaBute Compresses and Consolidates CSS and JS Files for Django Applications",
-    long_description = read('README'),
+    long_description = read('README.md'),
 
     author = 'Brant Steen',
     author_email = 'brant.steen@gmail.com',
