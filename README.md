@@ -19,14 +19,14 @@ At the very least, these two settings should be added to your django settings fi
 
 * CSS_DIR
     - e.g. CSS_DIR = "css"
-    - Main CSS directory inside MEDIA_ROOT, 
+    - Main CSS directory inside STATIC_ROOT (or MEDIA_ROOT),, 
     - Defaults to "css"
     - For example, if set to "theme/css", mediabrute will collect from "/path/to/media/root/theme/css" 
 
 
 * JS_DIR 
     - e.g. JS_DIR = "js"
-    -  Main JS directory inside MEDIA_ROOT
+    -  Main JS directory inside STATIC_ROOT (or MEDIA_ROOT),
     - Defaults to "js"
     - For example, if set to "theme/js", mediabrute will collect from "/path/to/media/root/theme/js"
 
