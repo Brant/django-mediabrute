@@ -40,6 +40,11 @@ def get_serving_url():
     """
     What URL base are we serving media out of
     """
+#    try:
+#        return settings.MEDIABRUTE_CACHE_BASE_URL
+#    except AttributeError:
+#        pass
+    
     try:
         if not settings.MEDIABRUTE_USE_STATIC:
             return settings.MEDIA_URL
@@ -47,6 +52,18 @@ def get_serving_url():
         pass
     
     return settings.STATIC_URL
+
+def get_css_url():
+    """
+    Return the full CSS url
+    """
+    return os.path.join(get_serving_url(), getattr(settings, "MEDIABRUTE_CSS_URL_PATH", get_main_css_dir(full_path=False)))
+
+def get_js_url():
+    """
+    Return the full JS url
+    """
+    return os.path.join(get_serving_url(), getattr(settings, "MEDIABRUTE_JS_URL_PATH", get_main_js_dir(full_path=False)))
 
 def join_em(mod, ext):
     """

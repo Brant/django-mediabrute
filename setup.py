@@ -6,7 +6,7 @@ def read(fname):
 
 setup(
     name = "django-mediabrute",
-    version = ".2",
+    version = ".3",
     url = 'http://github.com/Brant/django-mediabrute',
     license = 'GPL',
     description = "Django MediaBute Compresses and Consolidates CSS and JS Files for Django Applications",

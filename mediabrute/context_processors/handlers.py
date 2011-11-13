@@ -1,8 +1,9 @@
 """
 Code sitting behind context processors
 """
-from mediabrute.util import dirs
 from django.conf import settings
+
+from mediabrute.util import dirs
 from mediabrute.context_processors.compilers import compile_and_cache_js, compile_and_cache_css
 
 def minify_js(app_name):
@@ -19,7 +20,7 @@ def minify_js(app_name):
     if app_name and app_name in dirs.get_separated_apps("js"):
         cache_files.append(compile_and_cache_js([dirs.get_separated_js(app_name), ], cache_dir, app_name=app_name))    
         
-    return ["%s%s/cache/%s" % (dirs.get_serving_url(), dirs.get_main_js_dir(full_path=False), cache_name) for cache_name in cache_files]
+    return ["%s/cache/%s" % (dirs.get_js_url(), cache_name) for cache_name in cache_files]
     
 
 def minify_css(app_name):
@@ -36,5 +37,5 @@ def minify_css(app_name):
     if app_name and app_name in dirs.get_separated_apps("css"):
         cache_files.append(compile_and_cache_css([dirs.get_separated_css(app_name), ], cache_dir, app_name=app_name))
         
-    return ["%s%s/cache/%s" % (dirs.get_serving_url(), dirs.get_main_css_dir(full_path=False), cache_name) for cache_name in cache_files]
+    return ["%s/cache/%s" % (dirs.get_css_url(), cache_name) for cache_name in cache_files]
 
