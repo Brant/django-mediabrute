@@ -41,7 +41,10 @@ def unlink_cache(cache_dir, ext, app_name=None, unlink_all=False):
         file_list = glob.glob('%s/%s-*_.%s' % (cache_dir, app_name, ext))
     
     for file_fullpath in file_list:
-        os.unlink(file_fullpath)
+        try:
+            os.unlink(file_fullpath)
+        except OSError:
+            pass
 
 
 def list_media_in_dirs(ext, dir_list):
