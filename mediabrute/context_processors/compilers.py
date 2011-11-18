@@ -3,6 +3,7 @@ Compilers for mediabrute
 """
 
 import os
+import re
 
 from mediabrute.context_processors.heavy_lifting import generate_cache_name
 from mediabrute.context_processors.heavy_lifting import unlink_cache
