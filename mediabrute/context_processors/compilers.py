@@ -38,16 +38,24 @@ def compile_and_cache_css(css_dirs, cache_dir, app_name=None):
     css_files = top + mid + bottom
     
     if not os.path.isfile(cache_fullpath):
-        unlink_cache(cache_dir, "css", app_name)
-        cache_file = open(cache_fullpath, "w")  
+        
         css_contents = compile_files(css_files)
         
-        css_contents = css_contents.replace('url(', 'url(../')
-        css_contents = css_contents.replace('url (', 'url(../')
-        css_contents = css_contents.replace('url(../http', 'url(http')
-        css_contents = css_contents.replace('url(../"', 'url("../')
-        css_contents = css_contents.replace("url(../'", "url('../")
+        abs_path = dirs.get_css_url()
+        if not abs_path.endswith("/"):
+            abs_path += "/"
+            
+        # remove spaces
+        css_contents = css_contents.replace("url (", "url(")
         
+        # regex an absolute path into URLs that qualify        
+        css_contents = re.sub(r'url\(("|\')?([^"\'(https?\:)(//)])([^")]+)("|\')?\)', r'url("%s\2\3")' % abs_path, css_contents)
+        
+        # remove any double quotes at the end of url lines
+        css_contents = css_contents.replace("'\")","\")")
+        
+        unlink_cache(cache_dir, "css", app_name)
+        cache_file = open(cache_fullpath, "w")
         cache_file.write(minify.cssmin(css_contents))
         cache_file.close()
     

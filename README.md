@@ -19,14 +19,14 @@ At the very least, these two settings should be added to your django settings fi
 
 - CSS_DIR
     - e.g. CSS_DIR = "css"
-    - Main CSS directory inside STATIC_ROOT (or MEDIA_ROOT),, 
+    - Main CSS directory inside STATIC_ROOT (or MEDIA_ROOT - see MEDIABRUTE_USE_STATIC configuration),, 
     - Defaults to "css"
     - For example, if set to "theme/css", mediabrute will collect from "/path/to/media/root/theme/css" 
 
 
 - JS_DIR 
     - e.g. JS_DIR = "js"
-    -  Main JS directory inside STATIC_ROOT (or MEDIA_ROOT),
+    -  Main JS directory inside STATIC_ROOT (or MEDIA_ROOT - see MEDIABRUTE_USE_STATIC configuration),
     - Defaults to "js"
     - For example, if set to "theme/js", mediabrute will collect from "/path/to/media/root/theme/js"
 
@@ -166,14 +166,14 @@ Management commands
 
 There are a couple of management commands that can be called for mediabrute
 
-### Clearing the Cache
+## Clearing the Cache
 
 Clears the cached CSS and JS files
 
     manage.py mediabrute_clearcache
 
 
-### Generate JS settings
+## Generate JS settings
 
 An alternative to allowing mediabrute to auto generate the js settings file
 
@@ -206,16 +206,16 @@ But, we _can_ get it to work.
 Assuming you have /path/to/static/ and inside there, you have css and js as dirs
 ..so: */path/to/static/css/* and */path/to/static/js/*
 
-### First, configure STATIC_ROOT, STATICFILES_DIRS, and STATICFILES_FINDERS
+## First, configure STATIC_ROOT, STATICFILES_DIRS, and STATICFILES_FINDERS
 STATIC_ROOT = /path/to
 STATICFILES_DIRS = ( "/path/to/static/", )
 STATICFILES_FINDERS = ("django.contrib.staticfiles.finders.FileSystemFinder", ) 
 
-### Second, use a few hack configurations to get mediabrute to cooperate
+## Second, use a few hack configurations to get mediabrute to cooperate
 MEDIABRUTE_CACHE_BASE_URL = "/"
 CSS_DIR = "static/css"
 JS_DIR = "static/js"
 MEDIABRUTE_CSS_URL_PATH = "css"
 MEDIABRUTE_JS_URL_PATH = "js"
 
-### What's all this?
+## What's all this?
