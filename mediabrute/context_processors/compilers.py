@@ -13,7 +13,7 @@ from mediabrute.context_processors.heavy_lifting import get_js_settings
 from mediabrute.context_processors.heavy_lifting import organize_css_files
 
 from mediabrute import minify
-
+from mediabrute.util import dirs
 
 def compile_and_cache_css(css_dirs, cache_dir, app_name=None):
     """
