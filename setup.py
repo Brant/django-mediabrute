@@ -31,7 +31,7 @@ root_dir = os.path.dirname(__file__)
 if root_dir != "":
     os.chdir(root_dir)
 
-for dirpath, dirnames, filenames in os.walk("noodles"):
+for dirpath, dirnames, filenames in os.walk("mediabrute"):
     for i, dirname in enumerate(dirnames):
         if dirname.startswith('.'): del dirnames[i]
     if '__init__.py' in filenames:
