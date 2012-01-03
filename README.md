@@ -133,7 +133,7 @@ JS_SETTINGS_TEMPLATE
 --------------------
 - location and name of a template for js settings
 - This allows the project to auto-generate some settings for use in JS
-- e.g. "templates/js/config.txt"
+- e.g. "mediabrute/js/config.txt"
 - defaults to not being used (None)
 
 The template has django.conf.settings available to it as "settings"
