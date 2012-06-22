@@ -1,7 +1,7 @@
 function siteVars(opt){
 	switch (opt){
 		case 'home':
-			return '{% url website.views.home %}';
+			return '{% url home %}';
 			break;
 		case 'theme':
 			return '{{ settings.STATIC_URL }}';
