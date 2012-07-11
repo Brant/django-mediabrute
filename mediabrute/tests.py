@@ -4,19 +4,18 @@ when you run "manage.py test".
 
 Replace this with more appropriate tests for your application.
 """
+import os
+import inspect
 
 from django.test import TestCase
 from django.conf import settings
 from django.http import HttpRequest
-
 
 from mediabrute.util import dirs, api_helpers, defaults
 from mediabrute import api
 from mediabrute.util import list_css_top_files, list_css_bottom_files
 from mediabrute.context_processors import heavy_lifting
 
-import os
-import inspect
 
 class CssOrderingTestCase(TestCase):
     """
@@ -34,7 +33,7 @@ class CssOrderingTestCase(TestCase):
                              "/ohyayay/reset.css",
                              ]
         
-    def testCssTopFilesBelong(self):
+    def test_css_top_files_belong(self):
         """
         Make sure that all top files returned by the organize_css_files belong there
         """
@@ -42,7 +41,7 @@ class CssOrderingTestCase(TestCase):
         for fle in top:
             self.assertIn(os.path.basename(fle), list_css_top_files())
             
-    def testCssBottomFilesBelong(self):
+    def test_css_bottom_files_belong(self):
         """
         Make sure that all bottom files returned by the organize_css_files belong there
         """
@@ -50,7 +49,7 @@ class CssOrderingTestCase(TestCase):
         for fle in bottom:
             self.assertIn(os.path.basename(fle), list_css_bottom_files())
             
-    def testCssBottomFilesOrdered(self):
+    def test_css_bottom_files_ordered(self):
         """
         Make sure that the
         
@@ -78,7 +77,7 @@ class CssOrderingTestCase(TestCase):
                             self.assertLess(list_css_bottom_files().index(found_file_name), list_css_bottom_files().index(f_file_again_name))
                 
                 
-    def testCssTopFilesOrdered(self):
+    def test_css_top_files_ordered(self):
         """
         Make sure that the
         
@@ -114,7 +113,7 @@ class PublicApiTestCase(TestCase):
     """
     
         
-    def testParameterlessCalls(self):
+    def test_parameterless_calls(self):
         """
         find and call all API functions
         that require no arguments
@@ -133,7 +132,7 @@ class DefaultSettingsTestCase(TestCase):
     Test cases for default settings
     """
 
-    def testCssDir(self):
+    def test_css_dir(self):
         """
         Main CSS directory default setting test
         
@@ -153,7 +152,7 @@ class DefaultSettingsTestCase(TestCase):
         self.assertEquals(fullpath_compare, fullpath)
         self.assertEquals(ext_compare, ext_only)
         
-    def testJsDir(self):
+    def test_js_dir(self):
         """
         Main JS directory default setting test
         
@@ -173,7 +172,7 @@ class DefaultSettingsTestCase(TestCase):
         self.assertEquals(fullpath_compare, fullpath)
         self.assertEquals(ext_compare, ext_only)
         
-    def testCssTopFilesList(self):
+    def test_css_top_files_list(self):
         """
         Make sure that list_css_top_files matches 
         either settings.CSS_TOP_FILES or an empty list
@@ -183,7 +182,7 @@ class DefaultSettingsTestCase(TestCase):
         except AttributeError:
             self.assertEquals([], list_css_top_files())
     
-    def testCssBottomFilesList(self):
+    def test_css_bottom_files_list(self):
         """
         Make sure that list_css_bottom_files matches 
         either settings.CSS_BOTTOM_FILES or an empty list
@@ -193,7 +192,7 @@ class DefaultSettingsTestCase(TestCase):
         except AttributeError:
             self.assertEquals([], list_css_bottom_files())
             
-    def testCssAppDirs(self):
+    def test_css_app_dirs(self):
         """
         First, look for an APP_CSS setting,
         otherwise, default to "css"
@@ -206,7 +205,7 @@ class DefaultSettingsTestCase(TestCase):
         for app, directory in dirs.APP_CSS_DIRS:
             self.assertIn("/%s" % ext, directory)
     
-    def testClearCache(self):
+    def test_clear_cache(self):
         """
         Test that clearing the cache works
         i.e. does not raise an error
@@ -214,7 +213,7 @@ class DefaultSettingsTestCase(TestCase):
         api_helpers.clear_cache()
         
        
-    def testJsAppDirs(self):
+    def test_js_app_dirs(self):
         """
         First, look for an APP_JS setting,
         otherwise, default to "js"
