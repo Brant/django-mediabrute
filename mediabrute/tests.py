@@ -9,7 +9,6 @@ import inspect
 
 from django.test import TestCase
 from django.conf import settings
-from django.http import HttpRequest
 from django.core.exceptions import ImproperlyConfigured
 from django.core.management import call_command
 
@@ -364,6 +363,9 @@ class MiscTestCase(TestCase):
     Tests for some misc. stuff
     """
     def test_import_app(self):
+        """
+        Test our little app import function
+        """
         dirs.attempt_app_import("mediabrute")
         with self.assertRaises(ImproperlyConfigured):
             dirs.attempt_app_import("NONONONONO")

@@ -12,6 +12,8 @@ It does timestamp checking, so it only updates the cache'd file when it finds a 
 
 It is great for projects where only 1 js and/or css file needs to be cached for the entire site/project.
 
+Feel free to take a look at the [code coverage report](http://ci.podioadventures.com/view/Brant/job/mediabrute-tests/)
+
 Important Configurations
 ========================
 
