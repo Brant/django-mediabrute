@@ -158,6 +158,12 @@ class PublicApiTestCase(TestCase):
     """
     Tests relating to mediabrute.api
     """
+    def tearDown(self):
+        """
+        Execute this after each test
+        """
+        api.clear_cache()
+    
     def test_parameterless_calls(self):
         """
         find and call all API functions
