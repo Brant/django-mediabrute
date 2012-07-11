@@ -1,5 +1,5 @@
-Introduction
-============
+Mediabrute
+==========
 
 Media Brute's purpose is to automatically collect, compile, minify, and cache all JS and CSS for a Django project. It then has context processors that allow that minified JS and CSS to be referenced in the templates.
 
@@ -15,7 +15,7 @@ It is great for projects where only 1 js and/or css file needs to be cached for 
 Feel free to take a look at the [code coverage report](http://ci.podioadventures.com/view/Brant/job/mediabrute-tests/)
 
 Important Configurations
-========================
+------------------------
 
 At the very least, these two settings should be added to your django settings file.
 
@@ -33,20 +33,17 @@ At the very least, these two settings should be added to your django settings fi
     - For example, if set to "theme/js", mediabrute will collect from "/path/to/media/root/theme/js"
 
 Usage
-=====
+-----
 Basic usage is just a matter of adding any one of the three context processors to your settings file. Then, the minified media can be accessed in your templates.
 
-Context Processors
-------------------
-
+### Context Processors
 You can use the JS or CSS minifiers separately or just use the mini_media to have them both available
 
 - mediabrute.context_processors.mini_media
 - mediabrute.context_processors.mini_js
 - mediabrute.context_processors.mini_css
 
-Add to Templates
-------------------
+### Add to Templates
 In your templates, then, you can access the cache'd files using the context processors.
 
     {% for sheet in MINI_CSS %}
@@ -61,7 +58,7 @@ and
 
 
 Separation Configurations
-=========================
+-------------------------
 
 You can configure mediabrute to separate out certain apps and cache their media (css, js) separately.
 
@@ -88,51 +85,43 @@ In order to do this, two things are needed.
 These apps will have their css/js cached separately and will be part of the context processor ONLY when a visitor is inside the app's url confs
 
 Additional Configurations	
-=========================
+-------------------------
 
-MEDIABRUTE_USE_STATIC
---------------------
+### MEDIABRUTE_USE_STATIC
 - set to False if you are using MEDIA_ROOT for your static stuff instead of STATIC_ROOT
 - Useful for apps that were created before Django 1.3, where STATIC stuff was introduced
 - e.g. MEDIABRUTE_USE_STATIC = False
 - defaults to True
 
-APP_CSS
--------
+### APP_CSS
 - where app-specific CSS will sit in app directory
 - e.g. : "media/css", 
 - defaults to "css"
 	
-APP_JS
-------
+### APP_JS
 - where app-specific JS will sit in app directory
 - e.g. : "media/js", 
 - defaults to "js"
 	
-CSS_TOP_FILES
--------------
+### CSS_TOP_FILES
 - the list of files that should go at the top of the final CSS file
 - i.e. : things that should be overrideable
 - e.g. css resets, other standard sheets
 	
-CSS_BOTTOM_FILES
-----------------
+### CSS_BOTTOM_FILES
 - the list of filenames that should go at the bottom of the final CSS file
 - i.e. : things that should have "the final say"
 - e.g. files with lots of media queries for responsive design
 
-MEDIABRUTE_CSS_URL_PATH
------------------------
+### MEDIABRUTE_CSS_URL_PATH
 - Differentiates the URL path from the directory path
 - defaults to CSS_DIR setting
 
-MEDIABRUTE_JS_URL_PATH
------------------------
+### MEDIABRUTE_JS_URL_PATH
 - Differentiates the URL path from the directory path
 - defaults to JS_DIR setting
 
-JS_SETTINGS_TEMPLATE
---------------------
+### JS_SETTINGS_TEMPLATE
 - location and name of a template for js settings
 - This allows the project to auto-generate some settings for use in JS
 - e.g. "mediabrute/js/config.txt"
@@ -164,18 +153,18 @@ So, you could do something like this:
 
 
 Management commands
-===================
+-------------------
 
 There are a couple of management commands that can be called for mediabrute
 
-## Clearing the Cache
+### Clearing the Cache
 
 Clears the cached CSS and JS files
 
     manage.py mediabrute_clearcache
 
 
-## Generate JS settings
+### Generate JS settings
 
 An alternative to allowing mediabrute to auto generate the js settings file
 
@@ -188,7 +177,7 @@ The generated file can then simply be stuck into the js directory from which med
 
 
 API
-===
+---
 
 from mediabrute import api
 
@@ -199,7 +188,7 @@ from mediabrute import api
 - api.get_main_css_dir() : get the main css directory that mediabrute will pull from (this is the one inside MEDIA_ROOT)
 
 Serving static through runserver
-================================
+--------------------------------
 
 Mediabrute works best if you are running a separate server for your static files, not channeling static files through runserver.
 
@@ -208,16 +197,14 @@ But, we _can_ get it to work.
 Assuming you have /path/to/static/ and inside there, you have css and js as dirs
 ..so: */path/to/static/css/* and */path/to/static/js/*
 
-## First, configure STATIC_ROOT, STATICFILES_DIRS, and STATICFILES_FINDERS
+### First, configure STATIC_ROOT, STATICFILES_DIRS, and STATICFILES_FINDERS
 STATIC_ROOT = /path/to
 STATICFILES_DIRS = ( "/path/to/static/", )
 STATICFILES_FINDERS = ("django.contrib.staticfiles.finders.FileSystemFinder", ) 
 
-## Second, use a few hack configurations to get mediabrute to cooperate
+### Second, use a few hack configurations to get mediabrute to cooperate
 MEDIABRUTE_CACHE_BASE_URL = "/"
 CSS_DIR = "static/css"
 JS_DIR = "static/js"
 MEDIABRUTE_CSS_URL_PATH = "css"
 MEDIABRUTE_JS_URL_PATH = "js"
-
-## What's all this?
