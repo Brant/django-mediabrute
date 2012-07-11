@@ -1,8 +1,8 @@
 """
 API for app programming use
 """
-
 from mediabrute.util import dirs, api_helpers
+
 
 def minify_css(css=None, css_file=None):
     """
@@ -24,6 +24,7 @@ def get_cached_css(request):
     """
     return api_helpers.cached_css(request)
 
+
 def get_cached_js(request):
     """
     Get the cached JS scripts
@@ -36,11 +37,13 @@ def get_cached_js(request):
     """
     return api_helpers.cached_js(request)
 
+
 def clear_cache():
     """
     Clears out cache
     """
     api_helpers.clear_cache()
+
 
 def get_app_css_dirs():
     """
@@ -48,6 +51,7 @@ def get_app_css_dirs():
     These are the directories that Media Brute pulls CSS from 
     """
     return dirs.APP_CSS_DIRS
+
 
 def get_app_js_dirs():
     """
@@ -74,12 +78,14 @@ def get_main_js_dir():
     """
     return dirs.get_main_js_dir()
 
+
 def get_all_js_dirs():
     """
     Return a list of ALL javascript directories 
     that mediabrute pulls from
     """
     return get_app_js_dirs().append(get_main_js_dir())
+
 
 def get_all_css_dirs():
     """
@@ -88,15 +94,16 @@ def get_all_css_dirs():
     """
     return get_app_css_dirs().append(get_main_css_dir())
 
+
 def add_separate_js_dir(app, some_dir):
     """
     Add a directory of JS files, tied to an app
     """
-    add_separate_js_dir(app, some_dir)
+    dirs.add_separate_js_dir(app, some_dir)
     
 
 def add_separate_css_dir(app, some_dir):
     """
     Add a directory of CSS files, tied to an app
     """
-    add_separate_css_dir(app, some_dir)
+    dirs.add_separate_css_dir(app, some_dir)
