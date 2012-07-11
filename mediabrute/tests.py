@@ -10,6 +10,7 @@ import inspect
 from django.test import TestCase
 from django.conf import settings
 from django.http import HttpRequest
+from django.core.exceptions import ImproperlyConfigured
 
 from mediabrute.util import dirs, api_helpers, defaults
 from mediabrute import api
@@ -111,8 +112,6 @@ class PublicApiTestCase(TestCase):
     """
     Tests relating to mediabrute.api
     """
-    
-        
     def test_parameterless_calls(self):
         """
         find and call all API functions
@@ -276,3 +275,28 @@ class DefaultSettingsTestCase(TestCase):
         
         for app, directory in dirs.APP_JS_DIRS:
             self.assertIn("/%s" % ext, directory)
+            
+    def test_separated_apps(self):
+        """
+        Test what is separated by default
+        """
+        self.assertEquals(dirs.get_separated_apps("css"), [])
+        self.assertEquals(dirs.get_separated_apps("js"), [])
+        
+        with self.settings(SEPARATE_CSS=["something"]):
+            self.assertIn("something", dirs.get_separated_apps("css"))
+            self.assertEquals(len(dirs.get_separated_apps("css")), 1)
+            
+        with self.settings(SEPARATE_JS=["something"]):
+            self.assertIn("something", dirs.get_separated_apps("js"))
+            self.assertEquals(len(dirs.get_separated_apps("js")), 1)
+            
+class MiscTestCase(TestCase):
+    """
+    Tests for some misc. stuff
+    """
+    def test_import_app(self):
+        dirs.attempt_app_import("mediabrute")
+        with self.assertRaises(ImproperlyConfigured):
+            dirs.attempt_app_import("NONONONONO")
+        
