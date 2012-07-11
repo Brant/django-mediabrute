@@ -25,7 +25,7 @@ class CssOrderingTestCase(TestCase):
         """
         Setup for css ordering tests
         """
-        self.fakeFileList = [
+        self.fake_file_list = [
                              "/asdfs/gggg/yoyo/mobile.css",
                              "/asdf/gggg/yoyo2/mobile.css",
                              "/yayay/asdf/not/style.css",
@@ -37,7 +37,7 @@ class CssOrderingTestCase(TestCase):
         """
         Make sure that all top files returned by the organize_css_files belong there
         """
-        top, std, bottom = heavy_lifting.organize_css_files(self.fakeFileList)
+        top, std, bottom = heavy_lifting.organize_css_files(self.fake_file_list)
         for fle in top:
             self.assertIn(os.path.basename(fle), list_css_top_files())
             
@@ -45,7 +45,7 @@ class CssOrderingTestCase(TestCase):
         """
         Make sure that all bottom files returned by the organize_css_files belong there
         """
-        top, std, bottom = heavy_lifting.organize_css_files(self.fakeFileList)
+        top, std, bottom = heavy_lifting.organize_css_files(self.fake_file_list)
         for fle in bottom:
             self.assertIn(os.path.basename(fle), list_css_bottom_files())
             
@@ -59,7 +59,7 @@ class CssOrderingTestCase(TestCase):
         TODO:Finish this test
         """
         
-        top, std, bottom = heavy_lifting.organize_css_files(self.fakeFileList)
+        top, std, bottom = heavy_lifting.organize_css_files(self.fake_file_list)
          
         if len(bottom) > 1 and len(list_css_bottom_files()) > 1:
             for found_file in bottom:
@@ -87,7 +87,7 @@ class CssOrderingTestCase(TestCase):
         TODO:Finish this test 
         """
         
-        top, std, bottom = heavy_lifting.organize_css_files(self.fakeFileList)
+        top, std, bottom = heavy_lifting.organize_css_files(self.fake_file_list)
         
         if len(top) > 1 and len(list_css_top_files()) > 1:
             for found_file in top:

@@ -100,7 +100,7 @@ def generate_cache_dir(media_dir):
     """
     try:
         ext = settings.MEDIABRUTE_CACHE_DIR
-    except:
+    except AttributeError:
         ext = defaults.MEDIABRUTE_CACHE_DIR
     
     fullpath = os.path.join(media_dir, ext)

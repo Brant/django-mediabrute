@@ -1,10 +1,9 @@
 """
 Code sitting behind context processors
 """
-from django.conf import settings
-
 from mediabrute.util import dirs
 from mediabrute.context_processors.compilers import compile_and_cache_js, compile_and_cache_css
+
 
 def minify_js(app_name):
     """
