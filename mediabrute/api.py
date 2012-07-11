@@ -12,7 +12,7 @@ def minify_css(css=None, css_file=None):
         print "You must provide either some CSS as a string or the path to a file" 
     
 
-def get_cached_css(request):
+def get_cached_css(request=None):
     """
     Get the cached CSS sheets
     
@@ -25,7 +25,7 @@ def get_cached_css(request):
     return api_helpers.cached_css(request)
 
 
-def get_cached_js(request):
+def get_cached_js(request=None):
     """
     Get the cached JS scripts
     

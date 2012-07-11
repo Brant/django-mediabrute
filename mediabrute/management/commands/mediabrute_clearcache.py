@@ -10,7 +10,6 @@ class Command(BaseCommand):
     """
     mediabrute_clearcache BaseCommand extension
     """
-    
     def handle(self, *args, **options):
         """
         Delete JS and CSS cache dirs

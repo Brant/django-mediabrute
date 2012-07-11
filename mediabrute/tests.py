@@ -152,9 +152,7 @@ class CssOrderingTestCase(TestCase):
 
                         if top.index(found_file) < top.index(f_file_again):
                             self.assertLess(list_css_top_files().index(found_file_name), list_css_top_files().index(f_file_again_name))
-                        
-                                    
-        
+                 
 
 class PublicApiTestCase(TestCase):
     """
@@ -172,6 +170,22 @@ class PublicApiTestCase(TestCase):
                 if not spec.args and not spec.varargs and not spec.keywords and not spec.defaults:
                     func()
                     
+    def test_get_cached_css(self):
+        """
+        Test the "get cached css" api call
+        
+        should return a file name in a list
+        """
+        self.assertEquals(len(api.get_cached_css()), 1)
+        
+    def test_get_cached_js(self):
+        """
+        Test the "get cached css" api call
+        
+        should return a file name in a list
+        """
+        self.assertEquals(len(api.get_cached_js()), 1)
+        
 
 class URLsTestCase(TestCase):
     """

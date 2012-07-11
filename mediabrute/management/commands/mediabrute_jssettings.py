@@ -20,6 +20,9 @@ class Command(BaseCommand):
     manage.py mediabrute_jssettings <filename>
     """
     
+    args = '<filename>'
+    help = 'Create a static JS settings file for mediabrute. pass an optional filename for that file.'
+    
     def handle(self, *args, **options):
         """
         Create the settings file, write to the main JS directory
@@ -38,3 +41,4 @@ class Command(BaseCommand):
         settings_file = open(os.path.join(js_dir, filename), "w")
         settings_file.write(js_settings)
         settings_file.close()
+        
