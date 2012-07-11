@@ -131,7 +131,16 @@ class DefaultSettingsTestCase(TestCase):
     """
     Test cases for default settings
     """
-
+    def test_get_serving_url(self):
+        """
+        Test our serving url
+        """
+        self.assertEquals(dirs.get_serving_url(), settings.STATIC_URL)
+        
+        with self.settings(MEDIABRUTE_USE_STATIC=False):
+            self.assertEquals(dirs.get_serving_url(), settings.MEDIA_URL)
+    
+    
     def test_css_dir(self):
         """
         Main CSS directory default setting test
