@@ -73,7 +73,7 @@ class ManagementTestCase(TestCase):
             os.unlink(custom_fullpath)            
         self.assertFalse(os.path.isfile(custom_fullpath))
         
-        call_command("mediabrute_jssettings", "heyo")
+        call_command("mediabrute_jssettings", custom_filename)
         self.assertTrue(os.path.isfile(custom_fullpath))
         
         os.unlink(custom_fullpath)            
@@ -86,7 +86,7 @@ class ManagementTestCase(TestCase):
             os.unlink(custom_fullpath)            
         self.assertFalse(os.path.isfile(custom_fullpath))
         
-        call_command("mediabrute_jssettings", "heyo")
+        call_command("mediabrute_jssettings", custom_filename)
         self.assertTrue(os.path.isfile(custom_fullpath))
         
         os.unlink(custom_fullpath)            
