@@ -1,13 +1,16 @@
 """
 Django-manage.py extension 
-python manage.py mediabrute_clearcache
+
+python manage.py mediabrute_jssettings <filename>
 """
+import os
 
 from django.core.management.base import BaseCommand
+
 from mediabrute.context_processors.heavy_lifting import get_js_settings
 from mediabrute.util.dirs import get_main_js_dir
 from mediabrute.util import defaults
-import os
+
 
 class Command(BaseCommand):
     """

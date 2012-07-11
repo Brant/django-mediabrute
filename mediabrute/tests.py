@@ -24,15 +24,46 @@ class ManagementTestCase(TestCase):
     Tests for custom management commands
     """
     def test_jssettings(self):
+        """
+        Test the creation of a static JS settings file
+        """
         settings_fullpath = os.path.join(dirs.get_main_js_dir(), "mediabrute-settings.js")
+        
         if os.path.isfile(settings_fullpath):
             os.unlink(settings_fullpath)            
         self.assertFalse(os.path.isfile(settings_fullpath))
         
         call_command("mediabrute_jssettings")
         self.assertTrue(os.path.isfile(settings_fullpath))
+        
         os.unlink(settings_fullpath)            
         self.assertFalse(os.path.isfile(settings_fullpath))
+        
+        custom_filename = "heyo.js"
+        custom_fullpath = os.path.join(dirs.get_main_js_dir(), "heyo.js")
+        
+        if os.path.isfile(custom_fullpath):
+            os.unlink(custom_fullpath)            
+        self.assertFalse(os.path.isfile(custom_fullpath))
+        
+        call_command("mediabrute_jssettings", "heyo")
+        self.assertTrue(os.path.isfile(custom_fullpath))
+        
+        os.unlink(custom_fullpath)            
+        self.assertFalse(os.path.isfile(custom_fullpath))
+        
+        custom_filename = "heyo"
+        custom_fullpath = os.path.join(dirs.get_main_js_dir(), "heyo.js")
+        
+        if os.path.isfile(custom_fullpath):
+            os.unlink(custom_fullpath)            
+        self.assertFalse(os.path.isfile(custom_fullpath))
+        
+        call_command("mediabrute_jssettings", "heyo")
+        self.assertTrue(os.path.isfile(custom_fullpath))
+        
+        os.unlink(custom_fullpath)            
+        self.assertFalse(os.path.isfile(custom_fullpath))
         
 
 class CssOrderingTestCase(TestCase):
