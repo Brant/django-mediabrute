@@ -11,12 +11,29 @@ from django.test import TestCase
 from django.conf import settings
 from django.http import HttpRequest
 from django.core.exceptions import ImproperlyConfigured
+from django.core.management import call_command
 
 from mediabrute.util import dirs, api_helpers, defaults
 from mediabrute import api
 from mediabrute.util import list_css_top_files, list_css_bottom_files
 from mediabrute.context_processors import heavy_lifting
 
+
+class ManagementTestCase(TestCase):
+    """
+    Tests for custom management commands
+    """
+    def test_jssettings(self):
+        settings_fullpath = os.path.join(dirs.get_main_js_dir(), "mediabrute-settings.js")
+        if os.path.isfile(settings_fullpath):
+            os.unlink(settings_fullpath)            
+        self.assertFalse(os.path.isfile(settings_fullpath))
+        
+        call_command("mediabrute_jssettings")
+        self.assertTrue(os.path.isfile(settings_fullpath))
+        os.unlink(settings_fullpath)            
+        self.assertFalse(os.path.isfile(settings_fullpath))
+        
 
 class CssOrderingTestCase(TestCase):
     """
