@@ -125,11 +125,10 @@ class PublicApiTestCase(TestCase):
                 if not spec.args and not spec.varargs and not spec.keywords and not spec.defaults:
                     func()
                     
-    
-        
-class DefaultSettingsTestCase(TestCase):
+
+class URLsTestCase(TestCase):
     """
-    Test cases for default settings
+    Test some things regarding auto-generated URLs
     """
     def test_get_serving_url(self):
         """
@@ -140,7 +139,50 @@ class DefaultSettingsTestCase(TestCase):
         with self.settings(MEDIABRUTE_USE_STATIC=False):
             self.assertEquals(dirs.get_serving_url(), settings.MEDIA_URL)
     
+    def test_css_url(self):
+        """
+        Test auto-generated CSS urls
+        """
+        self.assertEquals(dirs.get_css_url(), "%s%s" % (settings.STATIC_URL, "css"))
+        
+        with self.settings(MEDIABRUTE_USE_STATIC=False):
+            self.assertEquals(dirs.get_css_url(), "%s%s" % (settings.MEDIA_URL, "css"))
+            
+        with self.settings(MEDIABRUTE_CSS_URL_PATH="heyo/yoyo"):
+            self.assertEquals(dirs.get_css_url(), "%s%s" % (settings.STATIC_URL, "heyo/yoyo"))
     
+        with self.settings(MEDIABRUTE_USE_STATIC=False, MEDIABRUTE_CSS_URL_PATH="heyo/yoyo"):
+            self.assertEquals(dirs.get_css_url(), "%s%s" % (settings.MEDIA_URL, "heyo/yoyo"))
+    
+    def test_js_url(self):
+        """
+        Test auto-generated JS urls
+        """
+        self.assertEquals(dirs.get_js_url(), "%s%s" % (settings.STATIC_URL, "js"))
+        
+        with self.settings(MEDIABRUTE_USE_STATIC=False):
+            self.assertEquals(dirs.get_js_url(), "%s%s" % (settings.MEDIA_URL, "js"))
+        
+        with self.settings(MEDIABRUTE_JS_URL_PATH="heyo/yoyo"):
+            self.assertEquals(dirs.get_js_url(), "%s%s" % (settings.STATIC_URL, "heyo/yoyo"))
+    
+        with self.settings(MEDIABRUTE_USE_STATIC=False, MEDIABRUTE_JS_URL_PATH="heyo/yoyo"):
+            self.assertEquals(dirs.get_js_url(), "%s%s" % (settings.MEDIA_URL, "heyo/yoyo"))
+       
+        
+class DefaultSettingsTestCase(TestCase):
+    """
+    Test cases for default settings
+    """
+    def test_get_root(self):
+        """
+        dirs.get_root
+        """
+        self.assertEquals(dirs.get_root(), settings.STATIC_ROOT)
+        
+        with self.settings(MEDIABRUTE_USE_STATIC=False):
+            self.assertEquals(dirs.get_root(), settings.MEDIA_ROOT)
+        
     def test_css_dir(self):
         """
         Main CSS directory default setting test
