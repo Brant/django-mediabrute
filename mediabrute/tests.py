@@ -11,12 +11,40 @@ from django.test import TestCase
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.core.management import call_command
+from django.test.client import Client
 
 from mediabrute.util import dirs, api_helpers, defaults
 from mediabrute import api
 from mediabrute.util import list_css_top_files, list_css_bottom_files
 from mediabrute.context_processors import heavy_lifting
 
+
+class ContextProcessorsTestCase(TestCase):
+    """
+    The meat and potatoes of this is the context processors.
+    
+    Let's make sure they work.
+    """
+    urls = "mediabrute.test_urls"
+    
+    def setUp(self):
+        """
+        Create a couple variables for use during tests
+        """
+        self.client = Client()
+        
+    def tearDown(self):
+        """
+        Clean up after ourselves
+        """
+        api.clear_cache()
+    
+    def test_minifiers(self):
+        """
+        Test that our minifiers work
+        """
+        response = self.client.get("/")
+        
 
 class ManagementTestCase(TestCase):
     """
