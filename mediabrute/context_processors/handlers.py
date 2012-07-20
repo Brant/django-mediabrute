@@ -3,7 +3,7 @@ Code sitting behind context processors
 """
 from mediabrute.util import dirs
 from mediabrute.context_processors.compilers import compile_and_cache_js, compile_and_cache_css
-
+from mediabrute.context_processors.heavy_lifting import list_media_in_dirs
 
 def minify_js(app_name):
     """
@@ -13,6 +13,17 @@ def minify_js(app_name):
     cache_dir = dirs.generate_cache_dir(js_dir)
         
     js_dirs = [js_dir, dirs.APP_JS_DIRS]
+    
+    js_files = []
+    js_files_only = []
+    for js_dir in js_dirs:
+        js_files += list_media_in_dirs("js", js_dir)
+    
+    for js_file in js_files:
+        js_files_only.append(js_file.split("/")[-1])
+    
+    print js_files_only
+    return ["%s/%s" % (dirs.get_js_url(), js_file) for js_file in js_files_only]
     
     cache_files = [compile_and_cache_js(js_dirs, cache_dir, add_settings=True),]
     
