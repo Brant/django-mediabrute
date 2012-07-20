@@ -63,7 +63,7 @@ def list_media_in_dirs(ext, dir_list):
                 
     elif type(dir_list) is str:        
         files = [item for item in os.listdir(dir_list) if item.endswith(".%s" % ext)]
-        for fle in files:
+        for fle in sorted(files):
             file_list.append(os.path.join(dir_list, fle))
             
     return file_list
