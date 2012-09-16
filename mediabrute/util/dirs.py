@@ -59,7 +59,7 @@ def remove_old_files():
     """
     Return the setting for removing old cache files
     """
-    return getattr(settings, MEDIABRUTE_REMOVE_OLD, defaults.MEDIABRUTE_REMOVE_OLD)
+    return getattr(settings, "MEDIABRUTE_REMOVE_OLD", defaults.MEDIABRUTE_REMOVE_OLD)
 
 
 def get_css_url():
