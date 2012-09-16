@@ -87,6 +87,13 @@ These apps will have their css/js cached separately and will be part of the cont
 Additional Configurations	
 -------------------------
 
+### MEDIABRUTE_REMOVE_OLD
+- setting for whether or not you want old cache files to be removed
+- True will keep cache directories cleaned up, False will let them build over time
+- Set to False if you are using server-side caching (like redis)
+- e.g. MEDIABRUTE_REMOVE_OLD = False
+- defaults to True
+
 ### MEDIABRUTE_USE_STATIC
 - set to False if you are using MEDIA_ROOT for your static stuff instead of STATIC_ROOT
 - Useful for apps that were created before Django 1.3, where STATIC stuff was introduced

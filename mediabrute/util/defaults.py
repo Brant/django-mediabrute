@@ -15,3 +15,5 @@ JS_SETTINGS_FILENAME = "mediabrute-settings.js"
 
 SEPARATE_CSS = []
 SEPARATE_JS = []
+
+MEDIABRUTE_REMOVE_OLD = True

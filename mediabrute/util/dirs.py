@@ -36,6 +36,7 @@ def get_root():
     
     return settings.STATIC_ROOT
 
+
 def get_serving_url():
     """
     What URL base are we serving media out of
@@ -53,17 +54,27 @@ def get_serving_url():
     
     return settings.STATIC_URL
 
+
+def remove_old_files():
+    """
+    Return the setting for removing old cache files
+    """
+    return getattr(settings, MEDIABRUTE_REMOVE_OLD, defaults.MEDIABRUTE_REMOVE_OLD)
+
+
 def get_css_url():
     """
     Return the full CSS url
     """
     return os.path.join(get_serving_url(), getattr(settings, "MEDIABRUTE_CSS_URL_PATH", get_main_css_dir(full_path=False)))
 
+
 def get_js_url():
     """
     Return the full JS url
     """
     return os.path.join(get_serving_url(), getattr(settings, "MEDIABRUTE_JS_URL_PATH", get_main_js_dir(full_path=False)))
+
 
 def join_em(mod, ext):
     """

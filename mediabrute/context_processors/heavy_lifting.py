@@ -7,8 +7,10 @@ mediabrute.context_processors.handlers
 import os
 import hashlib
 import glob
+
 from django.conf import settings
 from django.template.loader import render_to_string
+
 from mediabrute.util import list_css_top_files, list_css_bottom_files
 
 

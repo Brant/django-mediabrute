@@ -55,7 +55,8 @@ def compile_and_cache_css(css_dirs, cache_dir, app_name=None):
         # remove any double quotes at the end of url lines
         css_contents = css_contents.replace("'\")","\")")
         
-        unlink_cache(cache_dir, "css", app_name)
+        if dirs.remove_old_files():
+            unlink_cache(cache_dir, "css", app_name)
         cache_file = open(cache_fullpath, "w")
         cache_file.write(minify.cssmin(css_contents))
         cache_file.close()
@@ -82,7 +83,9 @@ def compile_and_cache_js(js_dirs, cache_dir, add_settings=False, app_name=None):
     cache_fullpath = os.path.join(cache_dir, cache_name)
     
     if not os.path.isfile(cache_fullpath):
-        unlink_cache(cache_dir, "js", app_name)
+        if dirs.remove_old_files():
+            unlink_cache(cache_dir, "js", app_name)
+            
         cache_file = open(cache_fullpath, "w")  
         js_contents = compile_files(js_files)
         
