@@ -41,8 +41,12 @@ def minify_css(app_name=None):
     css_dir = dirs.get_main_css_dir()
     cache_dir = dirs.generate_cache_dir(css_dir)
     
-#    if os.path.isfile(os.path.join(cache_dir, "mediabrute_usefile")):
-        
+    possible_cache = os.path.join(cache_dir, "mediabrute_usefile")
+    if os.path.isfile():
+        txt = open(possible_cache)
+        css_urls = txt.readlines()
+    
+    print css_urls    
     
     css_dirs = [css_dir, dirs.APP_CSS_DIRS]
     
