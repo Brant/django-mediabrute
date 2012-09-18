@@ -13,19 +13,17 @@ def minify_js(app_name=None):
     """
     js_dir = dirs.get_main_js_dir()
     cache_dir = dirs.generate_cache_dir(js_dir)
+    
+    possible_cache = os.path.join(cache_dir, "mediabrute_usefile")
+    if os.path.isfile(possible_cache):
+        txt = open(possible_cache)
+        js_urls = txt.readlines()
         
+        return [url for url in js_urls if url != ""]
+        
+
     js_dirs = [js_dir, dirs.APP_JS_DIRS]
-    """
-    js_files = []
-    js_files_only = []
-    for js_dir in js_dirs:
-        js_files += list_media_in_dirs("js", js_dir)
     
-    for js_file in js_files:
-        js_files_only.append(js_file.split("/")[-1])
-    
-    return ["%s/%s" % (dirs.get_js_url(), js_file) for js_file in js_files_only]
-    """
     cache_files = [compile_and_cache_js(js_dirs, cache_dir, add_settings=True),]
     
     if app_name and app_name in dirs.get_separated_apps("js"):
@@ -42,13 +40,11 @@ def minify_css(app_name=None):
     cache_dir = dirs.generate_cache_dir(css_dir)
     
     possible_cache = os.path.join(cache_dir, "mediabrute_usefile")
-    if os.path.isfile():
+    if os.path.isfile(possible_cache):
         txt = open(possible_cache)
         css_urls = txt.readlines()
-    
-    print css_urls
-    
-    return [url for url in css_urls if url != ""]    
+        
+        return [url for url in css_urls if url != ""]    
     
     css_dirs = [css_dir, dirs.APP_CSS_DIRS]
     

@@ -17,13 +17,26 @@ class Command(BaseCommand):
         """
         Cache Static Files
         """
+        possible_js_cache = os.path.join(generate_cache_dir(get_main_js_dir()), "mediabrute_usefile")
+        
+        if os.path.isfile(possible_js_cache):
+            os.unlink(possible_js_cache)
+        
         js_urls = handlers.minify_js()
-        js_file = open(os.path.join(generate_cache_dir(get_main_js_dir()), "mediabrute_usefile"), "w")
-        js_file.write(["%s\n" % url for url in js_urls])
+        js_file = open(possible_js_cache, "w")
+        for url in js_urls:
+            js_file.writelines(js_urls)
         js_file.close()
         
+        
+        possible_css_cache = os.path.join(generate_cache_dir(get_main_css_dir()), "mediabrute_usefile")
+        
+        if os.path.isfile(possible_css_cache):
+            os.unlink(possible_css_cache)
+        
         css_urls = handlers.minify_css()
-        css_file = open(os.path.join(generate_cache_dir(get_main_css_dir()), "mediabrute_usefile"), "w")
-        css_file.write(css_urls)
-        css_file.close(["%s\n" % url for url in css_urls])
+        css_file = open(possible_css_cache, "w")
+        for url in css_urls:
+            css_file.writelines(css_urls)            
+        css_file.close()
         
