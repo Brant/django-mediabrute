@@ -2,6 +2,8 @@
 Django-manage.py extension 
 python manage.py mediabrute_clearcache
 """
+import os
+
 from django.core.management.base import BaseCommand
 
 from mediabrute.context_processors import handlers
