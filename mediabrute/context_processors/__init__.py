@@ -4,9 +4,10 @@ Media Brute Context Processors
 use mini_media for CSS and JS,
 or use mini_js/mini_css separately
 """
+from django.core.urlresolvers import resolve, Resolver404
 
 from mediabrute.context_processors.handlers import minify_css, minify_js
-from django.core.urlresolvers import resolve, Resolver404
+
 
 def mini_media(request):
     """
@@ -26,6 +27,7 @@ def mini_media(request):
         
     return minis
 
+
 def mini_js(app_name=None):
     """
     {{ MINI_JS }} Context Processor
@@ -33,6 +35,7 @@ def mini_js(app_name=None):
     Gives a full URL to the minified, cached JS
     """
     return {"MINI_JS": minify_js(app_name)}
+
 
 def mini_css(app_name=None):
     """
