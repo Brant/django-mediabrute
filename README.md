@@ -40,32 +40,40 @@ and
     {% endfor %}
 
 
-Separation Configurations
--------------------------
+Management commands
+-------------------
 
-You can configure mediabrute to separate out certain apps and cache their media (css, js) separately.
+There are a couple of management commands that can be called for mediabrute
 
-In order to do this, two things are needed.
+### Cache Manually
 
-1) Name the app in your URL conf 
+	manage.py mediabrute_cache
 
-    urlpatterns = patterns('', 
-    	(r'^', include('some_app.urls', app_name="some_app"))
-    )
-    
-	The app_name must match the name of the app, as written in the INSTALLED_APPS setting
-	
-2) Put the app_name in your settings, as part of SEPARATE_CSS and/or SEPARATE_JS
-	
-	SEPARATE_CSS : A list of apps (found in INSTALLED_APPS) that should be separated
-		e.g. SEPARATE_CSS = ['some_app', 'some_other_app']
-		default = []
+This will generate a "lock" file in the cache directory of each static media type (e.g. "js/cache" and "css/cache"). This lock file will tell mediabrute's context processor what the name of the cache file is without letting mediabrute try to re-cache the files themselves. 
 
-	SEPARATE_JS : A list of apps (found in INSTALLED_APPS) that should be separated
-		e.g. SEPARATE_JS = ['some_app', 'some_other_app']
-		default = []
+This can be useful when using mediabrute as part of a deployment process.
 
-These apps will have their css/js cached separately and will be part of the context processor ONLY when a visitor is inside the app's url confs
+**NOTE:** When there is a lock file, the normal "on-the-fly" caching will stop. In order to clear the lock, either re-run mediabrute_cache or delete the lock file 
+
+
+### Clearing the Cache
+
+Clears the cached CSS and JS files
+
+    manage.py mediabrute_clearcache
+
+
+### Generate JS settings
+
+An alternative to allowing mediabrute to auto generate the js settings file
+
+- If using this, simply do not add JS_SETTINGS_TEMPLATE setting
+- see JS_SETTINGS_TEMPLATE setting above
+
+The generated file can then simply be stuck into the js directory from which mediabrute normally pulls
+
+    manage.py mediabrute_jssettings <filename>
+
 
 Configurations	
 -------------------------
@@ -154,39 +162,32 @@ So, you could do something like this:
 	}
 
 
-Management commands
--------------------
+Separation Configurations
+-------------------------
 
-There are a couple of management commands that can be called for mediabrute
+You can configure mediabrute to separate out certain apps and cache their media (css, js) separately.
 
-### Cache Manually
+In order to do this, two things are needed.
 
-	manage.py mediabrute_cache
+1) Name the app in your URL conf 
 
-This will generate a "lock" file in the cache directory of each static media type (e.g. "js/cache" and "css/cache"). This lock file will tell mediabrute's context processor what the name of the cache file is without letting mediabrute try to re-cache the files themselves. 
+    urlpatterns = patterns('', 
+    	(r'^', include('some_app.urls', app_name="some_app"))
+    )
+    
+	The app_name must match the name of the app, as written in the INSTALLED_APPS setting
+	
+2) Put the app_name in your settings, as part of SEPARATE_CSS and/or SEPARATE_JS
+	
+	SEPARATE_CSS : A list of apps (found in INSTALLED_APPS) that should be separated
+		e.g. SEPARATE_CSS = ['some_app', 'some_other_app']
+		default = []
 
-This can be useful when using mediabrute as part of a deployment process.
+	SEPARATE_JS : A list of apps (found in INSTALLED_APPS) that should be separated
+		e.g. SEPARATE_JS = ['some_app', 'some_other_app']
+		default = []
 
-**NOTE:** When there is a lock file, the normal "on-the-fly" caching will stop. In order to clear the lock, either (a) re-run mediabrute_cache, (b) delete the lock file 
-
-
-### Clearing the Cache
-
-Clears the cached CSS and JS files
-
-    manage.py mediabrute_clearcache
-
-
-### Generate JS settings
-
-An alternative to allowing mediabrute to auto generate the js settings file
-
-- If using this, simply do not add JS_SETTINGS_TEMPLATE setting
-- see JS_SETTINGS_TEMPLATE setting above
-
-The generated file can then simply be stuck into the js directory from which mediabrute normally pulls
-
-    manage.py mediabrute_jssettings <filename>
+These apps will have their css/js cached separately and will be part of the context processor ONLY when a visitor is inside the app's url confs
 
 
 API
