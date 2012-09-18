@@ -5,7 +5,7 @@ from mediabrute.util import dirs
 from mediabrute.context_processors.compilers import compile_and_cache_js, compile_and_cache_css
 from mediabrute.context_processors.heavy_lifting import list_media_in_dirs
 
-def minify_js(app_name):
+def minify_js(app_name=None):
     """
     {{ MINI_JS }} Context processor
     """
@@ -32,7 +32,7 @@ def minify_js(app_name):
     return ["%s/cache/%s" % (dirs.get_js_url(), cache_name) for cache_name in cache_files]
     
 
-def minify_css(app_name):
+def minify_css(app_name=None):
     """
     {{ MINI_CSS }} Context processor
     """    
