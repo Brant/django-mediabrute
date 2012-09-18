@@ -46,7 +46,9 @@ def minify_css(app_name=None):
         txt = open(possible_cache)
         css_urls = txt.readlines()
     
-    print css_urls    
+    print css_urls
+    
+    return [url for url in css_urls if url != ""]    
     
     css_dirs = [css_dir, dirs.APP_CSS_DIRS]
     
