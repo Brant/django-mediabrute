@@ -168,7 +168,9 @@ There are a couple of management commands that can be called for mediabrute
 
 	manage.py mediabrute_cache
 
-This will generate a "lock" file in the cache directory of each static media type (e.g. "js/cache" and "css/cache"). This can be useful when using mediabrute as part of a deployment process.
+This will generate a "lock" file in the cache directory of each static media type (e.g. "js/cache" and "css/cache"). This lock file will tell mediabrute's context processor what the name of the cache file is without letting mediabrute try to re-cache the files themselves. 
+
+This can be useful when using mediabrute as part of a deployment process.
 
 **NOTE:** When there is a lock file, the normal "on-the-fly" caching will stop
 
