@@ -1,6 +1,8 @@
 """
 Code sitting behind context processors
 """
+import os
+
 from mediabrute.util import dirs
 from mediabrute.context_processors.compilers import compile_and_cache_js, compile_and_cache_css
 from mediabrute.context_processors.heavy_lifting import list_media_in_dirs
@@ -38,6 +40,9 @@ def minify_css(app_name=None):
     """    
     css_dir = dirs.get_main_css_dir()
     cache_dir = dirs.generate_cache_dir(css_dir)
+    
+#    if os.path.isfile(os.path.join(cache_dir, "mediabrute_usefile")):
+        
     
     css_dirs = [css_dir, dirs.APP_CSS_DIRS]
     

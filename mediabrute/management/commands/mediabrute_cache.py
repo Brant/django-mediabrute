@@ -7,7 +7,7 @@ import os
 from django.core.management.base import BaseCommand
 
 from mediabrute.context_processors import handlers
-
+from mediabrute.util.dirs import generate_cache_dir
 
 class Command(BaseCommand):
     """
