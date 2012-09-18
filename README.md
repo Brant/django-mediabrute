@@ -14,24 +14,6 @@ It is great for projects where only 1 js and/or css file needs to be cached for 
 
 Feel free to take a look at the [code coverage report](http://ci.podioadventures.com/view/Brant/job/mediabrute-tests/)
 
-Important Configurations
-------------------------
-
-At the very least, these two settings should be added to your django settings file.
-
-### CSS_DIR
-- e.g. CSS_DIR = "css"
-- Main CSS directory inside STATIC_ROOT (or MEDIA_ROOT - see MEDIABRUTE_USE_STATIC configuration),, 
-- Defaults to "css"
-- For example, if set to "theme/css", mediabrute will collect from "/path/to/media/root/theme/css" 
-
-
-### JS_DIR 
-- e.g. JS_DIR = "js"
-- Main JS directory inside STATIC_ROOT (or MEDIA_ROOT - see MEDIABRUTE_USE_STATIC configuration),
-- Defaults to "js"
-- For example, if set to "theme/js", mediabrute will collect from "/path/to/media/root/theme/js"
-
 
 Usage
 -----
@@ -85,8 +67,20 @@ In order to do this, two things are needed.
 
 These apps will have their css/js cached separately and will be part of the context processor ONLY when a visitor is inside the app's url confs
 
-Additional Configurations	
+Configurations	
 -------------------------
+
+### CSS_DIR
+- Main CSS directory inside STATIC_ROOT (or MEDIA_ROOT - see MEDIABRUTE_USE_STATIC configuration)
+- For example, if set to "theme/css", mediabrute will collect from "/path/to/media/root/theme/css" 
+- e.g. CSS_DIR = "css" 
+- Defaults to "css"
+
+### JS_DIR 
+- Main JS directory inside STATIC_ROOT (or MEDIA_ROOT - see MEDIABRUTE_USE_STATIC configuration)
+- For example, if set to "theme/js", mediabrute will collect from "/path/to/media/root/theme/js"
+- e.g. JS_DIR = "js"
+- Defaults to "js" 
 
 ### MEDIABRUTE_REMOVE_OLD
 - setting for whether or not you want old cache files to be removed
@@ -173,7 +167,7 @@ This will generate a "lock" file in the cache directory of each static media typ
 
 This can be useful when using mediabrute as part of a deployment process.
 
-**NOTE:** When there is a lock file, the normal "on-the-fly" caching will stop
+**NOTE:** When there is a lock file, the normal "on-the-fly" caching will stop. In order to clear the lock, either (a) re-run mediabrute_cache, (b) delete the lock file 
 
 
 ### Clearing the Cache
