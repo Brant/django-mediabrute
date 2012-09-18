@@ -164,6 +164,15 @@ Management commands
 
 There are a couple of management commands that can be called for mediabrute
 
+### Cache Manually
+
+	manage.py mediabrute_cache
+
+This will generate a "lock" file in the cache directory of each static media type (e.g. "js/cache" and "css/cache"). This can be useful when using mediabrute as part of a deployment process.
+
+**NOTE:** When there is a lock file, the normal "on-the-fly" caching will stop
+
+
 ### Clearing the Cache
 
 Clears the cached CSS and JS files
