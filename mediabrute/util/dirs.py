@@ -41,11 +41,6 @@ def get_serving_url():
     """
     What URL base are we serving media out of
     """
-#    try:
-#        return settings.MEDIABRUTE_CACHE_BASE_URL
-#    except AttributeError:
-#        pass
-    
     try:
         if not settings.MEDIABRUTE_USE_STATIC:
             return settings.MEDIA_URL

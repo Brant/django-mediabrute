@@ -212,7 +212,6 @@ Assuming you have /path/to/static/ and inside there, you have css and js as dirs
 
 ### Second, use a few hack configurations to get mediabrute to cooperate
 	
-	MEDIABRUTE_CACHE_BASE_URL = "/"
 	CSS_DIR = "static/css"
 	JS_DIR = "static/js"
 	MEDIABRUTE_CSS_URL_PATH = "css"
