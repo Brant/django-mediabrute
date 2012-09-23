@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = "django-mediabrute",
-    version = ".3",
+    version = "0.3",
     url = 'http://github.com/Brant/django-mediabrute',
     license = 'GPL',
     description = "Django MediaBute Compresses and Consolidates CSS and JS Files for Django Applications",
