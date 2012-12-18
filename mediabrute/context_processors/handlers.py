@@ -22,7 +22,7 @@ def minify_js(app_name=None):
         return [url for url in js_urls if url != ""]
 
     # continue to do an on-the-fly cache if no lock file was found
-    js_dirs = [js_dir, dirs.APP_JS_DIRS]    
+    js_dirs = [js_dir, dirs.APP_JS_DIRS]
     cache_files = [compile_and_cache_js(js_dirs, cache_dir, add_settings=True),]
     
     if app_name and app_name in dirs.get_separated_apps("js"):
