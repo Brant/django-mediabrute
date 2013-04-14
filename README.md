@@ -213,9 +213,11 @@ Assuming you have /path/to/static/ and inside there, you have css and js as dirs
 
 ### First, configure STATIC_ROOT, STATICFILES_DIRS, and STATICFILES_FINDERS
 	
-	STATIC_ROOT = /path/to
-	STATICFILES_DIRS = ( "/path/to/static/", )
 	STATICFILES_FINDERS = ("django.contrib.staticfiles.finders.FileSystemFinder", ) 
+	STATICFILES_DIRS = ( "/path/to/static/", )
+	STATIC_ROOT = /path/to
+Note that "STATICFILES_DIRS" and "STATIC_ROOT" are related, in that "STATICFILES_DIRS" should be a path all the way to the static directory, while "STATIC_ROOT" stops just before that same static diretory.
+	
 
 ### Second, use a few hack configurations to get mediabrute to cooperate
 	
