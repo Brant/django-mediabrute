@@ -3,7 +3,6 @@ Build CSS and JS directory lists at compile
 
 Based on how django builds list of template directories
 """
-
 import os
 import sys
 
@@ -267,5 +266,6 @@ def add_separate_css_dir(app, css_dir):
         SEPARATE_CSS_DIRS[app].append((app, css_dir))
     except KeyError:
         SEPARATE_CSS_DIRS.update({app: [(app, css_dir),]})        
-    
+
+
 find_app_media_dirs()

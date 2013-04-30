@@ -2,9 +2,9 @@
 Django-manage.py extension 
 python manage.py mediabrute_clearcache
 """
-
 from django.core.management.base import BaseCommand
 from mediabrute.util import api_helpers
+
 
 class Command(BaseCommand):
     """

@@ -1,9 +1,9 @@
 """
 Helper functions for the public API
 """
-
 from mediabrute.util import dirs
 from mediabrute.context_processors import heavy_lifting, mini_media
+
 
 def clear_cache():
     """

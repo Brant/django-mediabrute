@@ -9,6 +9,7 @@ from django.core.management.base import BaseCommand
 from mediabrute.context_processors import handlers
 from mediabrute.util.dirs import generate_cache_dir, get_main_css_dir, get_main_js_dir
 
+
 class Command(BaseCommand):
     """
     mediabrute_cache BaseCommand extension

@@ -1,8 +1,8 @@
 """
 Grabs top files and bottom files from settings
 """
-
 from django.conf import settings
+
 
 def list_css_top_files():
     """
