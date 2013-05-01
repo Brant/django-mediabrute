@@ -398,4 +398,3 @@ class MiscTestCase(TestCase):
         dirs.attempt_app_import("mediabrute")
         with self.assertRaises(ImproperlyConfigured):
             dirs.attempt_app_import("NONONONONO")
-#         
